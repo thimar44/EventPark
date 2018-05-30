@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BO
+namespace EventPark.BO
 {
     public class Evenement : IEntityIdentifiable
     {
