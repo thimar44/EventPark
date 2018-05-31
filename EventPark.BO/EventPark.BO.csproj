@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adresse.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Evenement.cs" />
     <Compile Include="IEntityIdentifiable.cs" />
     <Compile Include="Parking.cs" />
