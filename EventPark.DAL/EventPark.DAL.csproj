@@ -50,9 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EparkContext.cs" />
-    <Compile Include="Migrations\201805301527134_init.cs" />
-    <Compile Include="Migrations\201805301527134_init.Designer.cs">
-      <DependentUpon>201805301527134_init.cs</DependentUpon>
+    <Compile Include="Migrations\201805311047562_init.cs" />
+    <Compile Include="Migrations\201805311047562_init.Designer.cs">
+      <DependentUpon>201805311047562_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,8 +72,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805301527134_init.resx">
-      <DependentUpon>201805301527134_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805311047562_init.resx">
+      <DependentUpon>201805311047562_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

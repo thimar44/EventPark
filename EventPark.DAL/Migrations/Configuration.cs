@@ -10,6 +10,7 @@ namespace EventPark.DAL.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "EventPark.DAL.EparkContext";
         }
 
         protected override void Seed(EventPark.DAL.EparkContext context)

@@ -1,5 +1,6 @@
 ﻿namespace EventPark.DAL
 {
+    using EventPark.BO;
     using System;
     using System.Data.Entity;
     using System.Linq;
@@ -15,12 +16,18 @@
         public EparkContext()
             : base("name=EparkContext")
         {
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<EparkContext, EventPark.DAL.Migrations.Configuration>());
+        }
+
+        public static EparkContext Create()
+        {
+            return new EparkContext();
         }
 
         // Ajoutez un DbSet pour chaque type d'entité à inclure dans votre modèle. Pour plus d'informations 
         // sur la configuration et l'utilisation du modèle Code First, consultez http://go.microsoft.com/fwlink/?LinkId=390109.
-
-        // public virtual DbSet<MyEntity> MyEntities { get; set; }
+        public virtual DbSet<Evenement> Evenements { get; set; }
+        public virtual DbSet<Adresse> Adresses { get; set; }
     }
 
     //public class MyEntity
