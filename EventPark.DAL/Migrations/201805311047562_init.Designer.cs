@@ -13,7 +13,7 @@ namespace EventPark.DAL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201805301527134_init"; }
+            get { return "201805311047562_init"; }
         }
         
         string IMigrationMetadata.Source
