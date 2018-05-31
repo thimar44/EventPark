@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventPark.BO
 {
-    class Parking
+    public class Parking
     {
         public String idAPI { get; set; }
 

@@ -229,7 +229,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -280,6 +282,20 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EventPark.BO\EventPark.BO.csproj">
+      <Project>{1560f687-2947-41af-86a6-d98ea145af7b}</Project>
+      <Name>EventPark.BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventPark.DAL\EventPark.DAL.csproj">
+      <Project>{f6122068-8a9f-4412-b2b8-bd1952aae002}</Project>
+      <Name>EventPark.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventPark.Services\EventPark.Services.csproj">
+      <Project>{3b25d1bc-f006-4dfc-8455-faab6995f9f6}</Project>
+      <Name>EventPark.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

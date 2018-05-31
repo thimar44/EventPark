@@ -39,6 +39,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EparkContext.cs" />
+    <Compile Include="Migrations\201805301527134_init.cs" />
+    <Compile Include="Migrations\201805301527134_init.Designer.cs">
+      <DependentUpon>201805301527134_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,10 +62,19 @@
       <Project>{1560f687-2947-41af-86a6-d98ea145af7b}</Project>
       <Name>EventPark.BO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EventPark.Services\EventPark.Services.csproj">
+      <Project>{3b25d1bc-f006-4dfc-8455-faab6995f9f6}</Project>
+      <Name>EventPark.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805301527134_init.resx">
+      <DependentUpon>201805301527134_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

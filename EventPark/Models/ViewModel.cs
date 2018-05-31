@@ -1,4 +1,4 @@
-﻿using BO;
+﻿using EventPark.BO;
 using System;
 
 namespace EventPark.Models
