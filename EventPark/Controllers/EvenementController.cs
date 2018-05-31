@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EventPark.BO;
+using EventPark.Models;
 
 namespace EventPark.Controllers
 {
@@ -11,7 +13,22 @@ namespace EventPark.Controllers
         // GET: Evenement
         public ActionResult Index()
         {
-            return View();
+
+            Adresse testAdress = new Adresse();
+            Evenement testEvent = new Evenement(
+                Guid.NewGuid(),
+                "theme",
+                new DateTime(),
+                "horaire",
+                120,
+                testAdress,
+                "description",
+                99, 
+                null);
+            EvenementViewModel testMode = new EvenementViewModel(testEvent);
+            List<EvenementViewModel> lst = new List<EvenementViewModel>();
+            lst.Add(testMode);
+            return View(lst);
         }
 
         // GET: Evenement/Details/5
