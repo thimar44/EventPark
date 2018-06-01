@@ -11,12 +11,15 @@ namespace EventPark.BO
 
         }
 
-        public Adresse(Guid pId, String pRue, String pCodePostal, String pVille)
+        public Adresse(Guid id, string rue, string codePostal, string ville, float coordX, float coordY, float epsg)
         {
-            this.id = pId;
-            this.rue = pRue;
-            this.codePostal = pCodePostal;
-            this.ville = pVille;
+            this.id = id;
+            this.rue = rue;
+            this.codePostal = codePostal;
+            this.ville = ville;
+            this.coordX = coordX;
+            this.coordY = coordY;
+            this.epsg = epsg;
         }
 
         public Guid id { get; set; }

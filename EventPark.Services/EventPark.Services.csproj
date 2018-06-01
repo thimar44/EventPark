@@ -48,10 +48,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceAdresse.cs" />
+    <Compile Include="ServiceEvenement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EventPark.BO\EventPark.BO.csproj">
+      <Project>{1560f687-2947-41af-86a6-d98ea145af7b}</Project>
+      <Name>EventPark.BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventPark.DAL\EventPark.DAL.csproj">
+      <Project>{f6122068-8a9f-4412-b2b8-bd1952aae002}</Project>
+      <Name>EventPark.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

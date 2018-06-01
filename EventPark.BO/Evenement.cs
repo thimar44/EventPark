@@ -11,18 +11,18 @@ namespace EventPark.BO
 
         }
 
-        public Evenement(Guid pId, String pTheme, DateTime pDate, String pHoraire, int pDuree, Adresse pAdresse, String pDescription,float pTarif, List<String> pImages)
-            :this()
+        public Evenement(Guid id, string theme, DateTime date, string titre, string horaire, int duree, Adresse adresse, string description, float tarif, List<string> images)
         {
-            this.id = pId;
-            this.theme = pTheme;
-            this.date = pDate;
-            this.horaire = pHoraire;
-            this.duree = pDuree;
-            this.adresse = pAdresse;
-            this.description = pDescription;
-            this.tarif = pTarif;
-            this.images = pImages;
+            this.id = id;
+            this.theme = theme;
+            this.date = date;
+            this.titre = titre;
+            this.horaire = horaire;
+            this.duree = duree;
+            this.adresse = adresse;
+            this.description = description;
+            this.tarif = tarif;
+            this.images = images;
         }
 
         public Guid id { get; set; }
@@ -30,6 +30,8 @@ namespace EventPark.BO
         public String theme { get; set; }
 
         public DateTime date { get; set; }
+
+        public String titre { get; set; }
 
         public String horaire { get; set; }
 
