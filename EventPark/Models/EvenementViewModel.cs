@@ -100,7 +100,7 @@ namespace EventPark.Models
             }
         }
 
-        public List<String> Images
+        public List<Image> Images
         {
             get
             {

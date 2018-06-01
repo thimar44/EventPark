@@ -50,6 +50,7 @@
     <Compile Include="Adresse.cs" />
     <Compile Include="Evenement.cs" />
     <Compile Include="IEntityIdentifiable.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="Parking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
