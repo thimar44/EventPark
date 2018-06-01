@@ -31,10 +31,10 @@ namespace EventPark
 
                     //Here we create a Admin super user who will maintain the website				
                     var user = new ApplicationUser();
-                    user.UserName = "admin";
+                    user.UserName = "admin@crazyevent.com";
                     user.Email = "admin@crazyevent.com";
 
-                    string userPWD = "password";
+                    string userPWD = "Pa$$w0rd";
 
                     var chkUser = userManager.Create(user, userPWD);
 

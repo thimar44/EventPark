@@ -17,7 +17,7 @@
         public EparkContext()
             : base("name=EparkContext")
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<EparkContext, EventPark.DAL.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EparkContext, EventPark.DAL.Migrations.Configuration>());
         }
 
         public static EparkContext Create()
