@@ -20,11 +20,11 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.theme;
+                return this.Metier.Theme;
             }
             set
             {
-                this.Metier.theme = value;
+                this.Metier.Theme = value;
             }
         }
 
@@ -32,11 +32,11 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.date;
+                return this.Metier.Date;
             }
             set
             {
-                this.Metier.date = value;
+                this.Metier.Date = value;
             }
         }
 
@@ -44,11 +44,11 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.horaire;
+                return this.Metier.Horaire;
             }
             set
             {
-                this.Metier.horaire = value;
+                this.Metier.Horaire = value;
             }
         }
 
@@ -56,11 +56,11 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.duree;
+                return this.Metier.Duree;
             }
             set
             {
-                this.Metier.duree = value;
+                this.Metier.Duree = value;
             }
         }
 
@@ -68,11 +68,11 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.adresse;
+                return this.Metier.Adresse;
             }
             set
             {
-                this.Metier.adresse = value;
+                this.Metier.Adresse = value;
             }
         }
 
@@ -80,11 +80,11 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.description;
+                return this.Metier.Description;
             }
             set
             {
-                this.Metier.description = value;
+                this.Metier.Description = value;
             }
         }
 
@@ -92,11 +92,11 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.tarif;
+                return this.Metier.Tarif;
             }
             set
             {
-                this.Metier.tarif = value;
+                this.Metier.Tarif = value;
             }
         }
 
@@ -104,19 +104,33 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.images;
+                return this.Metier.Images;
             }
             set
             {
-                this.Metier.images = value;
+                this.Metier.Images = value;
             }
         }
 
 
+        public void Insert()
+        {
+            ServiceEvenement.Insert(this.Metier);
+        }
+
+
+        public void Update()
+        {
+            ServiceEvenement.Update(this.Metier);
+        }
+
 
         public void Save()
         {
-            if (this.ID == Guid.Empty)
+
+
+
+            if (this.id == Guid.Empty)
             {
                 //insert
                 ServiceEvenement.Insert(this.Metier);
@@ -160,7 +174,7 @@ namespace EventPark.Models
             }
             else
             {
-                Evenement e = new Evenement() { id = Guid.Empty, titre = "Default" };
+                Evenement e = new Evenement() { id = Guid.Empty, Titre = "Default" };
                 retour = new EvenementViewModel(e);
             }
 

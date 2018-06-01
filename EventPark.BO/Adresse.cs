@@ -14,26 +14,26 @@ namespace EventPark.BO
         public Adresse(Guid id, string rue, string codePostal, string ville, float coordX, float coordY, float epsg)
         {
             this.id = id;
-            this.rue = rue;
-            this.codePostal = codePostal;
-            this.ville = ville;
-            this.coordX = coordX;
-            this.coordY = coordY;
-            this.epsg = epsg;
+            this.Rue = rue;
+            this.CodePostal = codePostal;
+            this.Ville = ville;
+            this.CoordX = coordX;
+            this.CoordY = coordY;
+            this.Epsg = epsg;
         }
 
         public Guid id { get; set; }
 
-        public String rue { get; set; }
+        public String Rue { get; set; }
 
-        public String codePostal { get; set; }
+        public String CodePostal { get; set; }
 
-        public String  ville { get; set; }
+        public String  Ville { get; set; }
 
-        public float coordX { get; set; }
+        public float CoordX { get; set; }
 
-        public float coordY { get; set; }
+        public float CoordY { get; set; }
 
-        public float epsg { get; set; }
+        public float Epsg { get; set; }
     }
 }

@@ -13,11 +13,13 @@ namespace EventPark.Controllers
         // GET: Evenement
         public ActionResult Index()
         {
-
+            /*
             Adresse a1 = new Adresse(Guid.NewGuid(), "rue de la marte", "44140", "montbert", 0, 0, 0);
             Adresse a2 = new Adresse(Guid.NewGuid(), "rue de l'eni", "44500", "Saint herblain", 0, 0, 0);
             Adresse a3 = new Adresse(Guid.NewGuid(), "boulevard de la mort", "44000", "Nantes", 0, 0, 0);
             Adresse a4 = new Adresse(Guid.NewGuid(), "place napoléon", "85000", "La Roche sur Yon", 0, 0, 0);
+            Adresse a5 = new Adresse(Guid.NewGuid(), "place napoléon", "85000", "La Roche sur Yon", 0, 0, 0);
+            Adresse a6 = new Adresse(Guid.NewGuid(), "place napoléon", "85000", "La Roche sur Yon", 0, 0, 0);
 
             Evenement e1 = new Evenement(Guid.NewGuid(), "fête", new DateTime(2014, 6, 14, 6, 32, 0), "Fête de la saucisse", "15h",600,a1,"On mange, on boit, on rigole", 15, null );
             Evenement e2 = new Evenement(Guid.NewGuid(), "concert", new DateTime(2014, 6, 14, 6, 32, 0), "Metallica", "21h", 120, a2, "Du gros rock", 0, null);
@@ -33,19 +35,18 @@ namespace EventPark.Controllers
             EvenementViewModel eV4 = new EvenementViewModel(e4);
             EvenementViewModel eV5 = new EvenementViewModel(e5);
             EvenementViewModel eV6 = new EvenementViewModel(e6);
-            /*
+            
 
-            eV1.Save();
-            eV2.Save();
-            eV3.Save();
-            eV4.Save();
-            eV5.Save();
-            eV6.Save();*/
-
+            eV1.Insert();
+            eV2.Insert();
+            eV3.Insert();
+            eV4.Insert();
+            eV5.Insert();
+            eV6.Insert();
+            */
             List<EvenementViewModel> lst = new List<EvenementViewModel>();
-            lst.Add(eV1);
 
-
+            lst = EvenementViewModel.GetAll();
             return View(lst);
         }
 

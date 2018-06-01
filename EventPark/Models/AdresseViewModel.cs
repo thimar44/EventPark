@@ -16,20 +16,15 @@ namespace EventPark.Models
             this.Metier = e;
         }
 
-
-
-       
-
-
         public String Rue
         {
             get
             {
-                return this.Metier.rue;
+                return this.Metier.Rue;
             }
             set
             {
-                this.Metier.rue = value;
+                this.Metier.Rue = value;
             }
         }
 
@@ -37,11 +32,11 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.codePostal;
+                return this.Metier.CodePostal;
             }
             set
             {
-                this.Metier.codePostal = value;
+                this.Metier.CodePostal = value;
             }
         }
 
@@ -52,11 +47,11 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.ville;
+                return this.Metier.Ville;
             }
             set
             {
-                this.Metier.ville = value;
+                this.Metier.Ville = value;
             }
         }
 
@@ -64,11 +59,11 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.coordX;
+                return this.Metier.CoordX;
             }
             set
             {
-                this.Metier.coordX = value;
+                this.Metier.CoordX = value;
             }
         }
 
@@ -76,11 +71,11 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.coordY;
+                return this.Metier.CoordY;
             }
             set
             {
-                this.Metier.coordY = value;
+                this.Metier.CoordY = value;
             }
         }
 
@@ -88,18 +83,18 @@ namespace EventPark.Models
         {
             get
             {
-                return this.Metier.epsg;
+                return this.Metier.Epsg;
             }
             set
             {
-                this.Metier.epsg = value;
+                this.Metier.Epsg = value;
             }
         }
 
 
         public void Save()
         {
-            if (this.ID == Guid.Empty)
+            if (this.id == Guid.Empty)
             {
                 //insert
                 ServiceAdresse.Insert(this.Metier);
