@@ -9,150 +9,31 @@
             </p>
         }
     }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Theme)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Horaire)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Duree)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descrition)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tarif)
-        </th>
-        <th></th>
-    </tr>
-
-
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Theme)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Horaire)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Duree)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descrition)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tarif)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
-
-</table>
-
-
 <div class="row">
     <div class="col-md-12">
         <div class="card-deck">
+            @foreach (var item in Model)
+            {
+                <div class="card mb-4">
+                    <div class="view overlay">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                        </a>
+                    </div>
 
-            <div class="card mb-4">
-                <div class="view overlay">
-                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight waves-effect waves-light"></div>
-                    </a>
+                    <div class="card-body">
+
+                        <h4 class="card-title"> @Html.DisplayFor(modelItem => item.Theme)</h4>
+                        <p class="card-text"> @Html.DisplayFor(modelItem => item.Descrition)</p>
+
+                        @Html.ActionLink("Détail", "Details", "Evenement", new { id = item.id }, new { @class = "btn btn-primary btn-large" })
+                        
+                    </div>
                 </div>
-
-                <div class="card-body">
-
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="btn btn-light-blue btn-md waves-effect waves-light">Read more</button>
-                </div>
-            </div>
-
-            <div class="card mb-4">
-                <div class="view overlay">
-                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight waves-effect waves-light"></div>
-                    </a>
-                </div>
-
-                <div class="card-body">
-
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="btn btn-light-blue btn-md waves-effect waves-light">Read more</button>
-                </div>
-            </div>
-
-
-            <div class="card mb-4">
-                <div class="view overlay">
-                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight waves-effect waves-light"></div>
-                    </a>
-                </div>
-                <div class="card-body">
-
-                    <!--Title-->
-                    <h4 class="card-title">Card title</h4>
-                    <!--Text-->
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                    <button type="button" class="btn btn-light-blue btn-md waves-effect waves-light">Read more</button>
-
-                </div>
+            }
+                
 
             </div>
-            <!-- Card -->
-            <!-- Card -->
-            <div class="card mb-4">
-
-                <!--Card image-->
-                <div class="view overlay">
-                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight waves-effect waves-light"></div>
-                    </a>
-                </div>
-
-                <!--Card content-->
-                <div class="card-body">
-
-                    <!--Title-->
-                    <h4 class="card-title">Card title</h4>
-                    <!--Text-->
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                    <button type="button" class="btn btn-light-blue btn-md waves-effect waves-light">Read more</button>
-
-                </div>
-
-            </div>
-            <!-- Card -->
-
-        </div>
-        <!-- Card group -->
-
     </div>
-    <!--Grid column-->
-
 </div>

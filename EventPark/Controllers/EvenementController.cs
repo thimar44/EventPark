@@ -51,9 +51,9 @@ namespace EventPark.Controllers
         }
 
         // GET: Evenement/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            return View(EvenementViewModel.Get(id));
         }
 
         // GET: Evenement/Create

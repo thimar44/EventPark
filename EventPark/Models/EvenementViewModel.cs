@@ -88,6 +88,18 @@ namespace EventPark.Models
             }
         }
 
+        public String Titre
+        {
+            get
+            {
+                return this.Metier.Titre;
+            }
+            set
+            {
+                this.Metier.Titre = value;
+            }
+        }
+
         public float Tarif
         {
             get
