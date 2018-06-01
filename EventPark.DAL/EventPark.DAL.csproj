@@ -36,6 +36,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,14 +55,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationUser.cs" />
     <Compile Include="EparkContext.cs" />
     <Compile Include="Migrations\201805311047562_init.cs" />
     <Compile Include="Migrations\201805311047562_init.Designer.cs">
       <DependentUpon>201805311047562_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806010827273_finition event.cs" />
-    <Compile Include="Migrations\201806010827273_finition event.Designer.cs">
-      <DependentUpon>201806010827273_finition event.cs</DependentUpon>
+    <Compile Include="Migrations\201805311253495_auth.cs" />
+    <Compile Include="Migrations\201805311253495_auth.Designer.cs">
+      <DependentUpon>201805311253495_auth.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +72,10 @@
     <ProjectReference Include="..\EventPark.BO\EventPark.BO.csproj">
       <Project>{1560f687-2947-41af-86a6-d98ea145af7b}</Project>
       <Name>EventPark.BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventPark.Services\EventPark.Services.csproj">
+      <Project>{3b25d1bc-f006-4dfc-8455-faab6995f9f6}</Project>
+      <Name>EventPark.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -75,8 +86,8 @@
     <EmbeddedResource Include="Migrations\201805311047562_init.resx">
       <DependentUpon>201805311047562_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806010827273_finition event.resx">
-      <DependentUpon>201806010827273_finition event.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805311253495_auth.resx">
+      <DependentUpon>201805311253495_auth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
