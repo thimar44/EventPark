@@ -7,7 +7,7 @@ namespace EventPark.Models
     {
         public T Metier { get; protected set; }
 
-        public Guid ID
+        public Guid id
         {
             get
             { return this.Metier.id; }
