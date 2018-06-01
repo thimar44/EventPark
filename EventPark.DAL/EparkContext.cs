@@ -1,11 +1,12 @@
 ﻿namespace EventPark.DAL
 {
     using EventPark.BO;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Linq;
 
-    public class EparkContext : DbContext
+    public class EparkContext : IdentityDbContext<ApplicationUser>
     {
         // Votre contexte a été configuré pour utiliser une chaîne de connexion « EparkContext » du fichier 
         // de configuration de votre application (App.config ou Web.config). Par défaut, cette chaîne de connexion cible 
