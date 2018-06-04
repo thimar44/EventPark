@@ -31,7 +31,7 @@ namespace EventPark.Models
         }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{hh:mm:ss 0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:hh:mm:ss dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name ="Date de début")]
         public DateTime DateDebut
         {
@@ -46,7 +46,7 @@ namespace EventPark.Models
         }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{hh:mm:ss 0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:hh:mm:ss dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date de fin")]
         public DateTime DateFin
         {
