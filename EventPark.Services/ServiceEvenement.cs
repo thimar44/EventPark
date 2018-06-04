@@ -38,7 +38,7 @@ namespace EventPark.Services
 
         private static Evenement Get(Guid id, EparkContext context)
         {
-            return context.Evenements.FirstOrDefault(e => e.id == id);
+            return context.Evenements.Include("Images").Include("Adresse").FirstOrDefault(e => e.id == id);
         }
 
         public static void Insert(Evenement e)
