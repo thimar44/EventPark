@@ -60,7 +60,6 @@ namespace EventPark.Services
                 eExistant.Theme = e.Theme;
                 eExistant.DateDebut = e.DateDebut;
                 eExistant.DateFin = e.DateFin;
-                eExistant.Duree = e.Duree;
                 eExistant.Adresse = e.Adresse;
                 eExistant.Description = e.Description;
                 eExistant.Tarif = e.Tarif;
@@ -70,5 +69,6 @@ namespace EventPark.Services
                 context.SaveChanges();
             }
         }
+
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using EventPark.BO;
 using EventPark.Models;
+using EventPark.Services;
 
 namespace EventPark.Controllers
 {
@@ -66,11 +67,12 @@ namespace EventPark.Controllers
 
         // POST: Evenement/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(EvenementViewModel vm)
         {
             try
             {
-                // TODO: Add insert logic here
+                vm.id = Guid.NewGuid();
+                vm.Insert();
 
                 return RedirectToAction("Index");
             }
@@ -78,17 +80,18 @@ namespace EventPark.Controllers
             {
                 return View();
             }
+
         }
 
         // GET: Evenement/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
             return View();
         }
 
         // POST: Evenement/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Guid id, FormCollection collection)
         {
             try
             {

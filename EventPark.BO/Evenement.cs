@@ -11,14 +11,13 @@ namespace EventPark.BO
 
         }
 
-        public Evenement(Guid id, string theme, DateTime dateDebut, DateTime dateFin, string titre, int duree, Adresse adresse, string description, float tarif, List<Image> images)
+        public Evenement(Guid id, string theme, DateTime dateDebut, DateTime dateFin, string titre, Adresse adresse, string description, float tarif, List<Image> images)
         {
             this.id = id;
             this.Theme = theme;
             this.DateDebut = dateDebut;
             this.DateFin = dateFin;
             this.Titre = titre;
-            this.Duree = duree;
             this.Adresse = adresse;
             this.Description = description;
             this.Tarif = tarif;
@@ -34,8 +33,6 @@ namespace EventPark.BO
         public DateTime DateFin { get; set; }
 
         public String Titre { get; set; }
-
-        public int Duree { get; set; }
 
         public Adresse Adresse { get; set; }
 

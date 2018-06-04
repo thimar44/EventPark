@@ -93,6 +93,10 @@
     <Compile Include="Migrations\201806040937230_supprHoraire.Designer.cs">
       <DependentUpon>201806040937230_supprHoraire.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806041225474_supprDuree.cs" />
+    <Compile Include="Migrations\201806041225474_supprDuree.Designer.cs">
+      <DependentUpon>201806041225474_supprDuree.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -133,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806040937230_supprHoraire.resx">
       <DependentUpon>201806040937230_supprHoraire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806041225474_supprDuree.resx">
+      <DependentUpon>201806041225474_supprDuree.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
