@@ -4,6 +4,12 @@
     ViewBag.Title = "Detail";
 }
 
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-10">
@@ -78,21 +84,56 @@
         </div>
     </div>
 
-    @{
-        string url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDRcX-jIZfNUkv60rhhzHO-mDHy2ZK-Imk&q=" + @Html.DisplayFor(model => model.Adresse.Rue) + "+" + @Html.DisplayFor(model => model.Adresse.CodePostal) + "+" + @Html.DisplayFor(model => model.Adresse.Ville);
-        //string url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDRcX-jIZfNUkv60rhhzHO-mDHy2ZK-Imk&q=Eiffel+Tower,Paris+France";
-    }
 
     <div class="row">
         <div class="col-md-12">
             <p> @Html.DisplayFor(model => model.Descrition)</p>
         </div>
     </div>
-    @url
 
-    <iframe width="600"
-            height="450"
-            frameborder="0" style="border:0"
-            src=@url allowfullscreen></iframe>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="map"></div>
+            <script>
+                function initMap() {
+                    
+                    var uluru = { lat: 46.670706, lng: -1.426700 };
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 12,
+                        center: uluru
+                    });
+                    var marker = new google.maps.Marker({
+                        position: uluru,
+                        map: map
+                    });
 
+                    var marker = new google.maps.Marker({
+                        position: { lat: -25.363, lng: 131.045 },
+                        map: map,
+                        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                        label: "uluru2"
+                    });
+
+                }
+            </script>
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXEJ9Kcn0hWuIFxXRK6E5QwjMjb9_n9Ew&callback=initMap">
+            </script>
+        </div>
+    </div>
+
+
+    @{
+        string url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDRcX-jIZfNUkv60rhhzHO-mDHy2ZK-Imk&q=" + @Html.DisplayFor(model => model.Adresse.UrlGoogle);
+        //url qui fonctionne = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDRcX-jIZfNUkv60rhhzHO-mDHy2ZK-Imk&q=place+napoleon+85000+La+Roche-sur-Yon";
+    }
+
+    <div class="row iframeGoogleRow">
+
+        <iframe width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                src=@url allowfullscreen></iframe>
+
+    </div>
 </div>
