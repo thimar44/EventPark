@@ -32,10 +32,10 @@ img.logo {
 }
 
 
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-}
+    .carousel-item img {
+        width: 100%;
+        height: 100%;
+    }
 
 .container {
     background-color: white;
@@ -43,7 +43,6 @@ img.logo {
 
 body {
     background-image: url("../Images/bg.jpg");
-    
 }
 
 .event-title {
@@ -51,10 +50,31 @@ body {
     padding: 1rem;
 }
 
-.container.body-content{
-    min-height:800px
+.container.body-content {
+    min-height: 800px
 }
 
 footer {
     text-align: center;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-header {
+    min-height: 95px;
+}
+
+.tarif {
+    text-align: right;
+}
+
+#ficheEvenement{
+    margin: 10px 0;
+}
+
+.newEvent {
+    text-align: center;
+    padding: 10px 0;
 }

@@ -28,27 +28,27 @@ namespace EventPark.Models
             }
         }
 
-        public DateTime Date
+        public DateTime DateDebut
         {
             get
             {
-                return this.Metier.Date;
+                return this.Metier.DateDebut;
             }
             set
             {
-                this.Metier.Date = value;
+                this.Metier.DateDebut = value;
             }
         }
 
-        public String Horaire
+        public DateTime DateFin
         {
             get
             {
-                return this.Metier.Horaire;
+                return this.Metier.DateFin;
             }
             set
             {
-                this.Metier.Horaire = value;
+                this.Metier.DateFin = value;
             }
         }
 

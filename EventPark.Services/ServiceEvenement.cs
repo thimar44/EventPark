@@ -58,8 +58,8 @@ namespace EventPark.Services
                 EntityState s = context.Entry(e).State;
                 Evenement eExistant = Get(e.id, context);
                 eExistant.Theme = e.Theme;
-                eExistant.Date = e.Date;
-                eExistant.Horaire = e.Horaire;
+                eExistant.DateDebut = e.DateDebut;
+                eExistant.DateFin = e.DateFin;
                 eExistant.Duree = e.Duree;
                 eExistant.Adresse = e.Adresse;
                 eExistant.Description = e.Description;

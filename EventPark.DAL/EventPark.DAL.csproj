@@ -85,6 +85,14 @@
     <Compile Include="Migrations\201806040753472_adresse_libelle.Designer.cs">
       <DependentUpon>201806040753472_adresse_libelle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806040935592_dateDebut-dateFin.cs" />
+    <Compile Include="Migrations\201806040935592_dateDebut-dateFin.Designer.cs">
+      <DependentUpon>201806040935592_dateDebut-dateFin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806040937230_supprHoraire.cs" />
+    <Compile Include="Migrations\201806040937230_supprHoraire.Designer.cs">
+      <DependentUpon>201806040937230_supprHoraire.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -119,6 +127,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806040753472_adresse_libelle.resx">
       <DependentUpon>201806040753472_adresse_libelle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806040935592_dateDebut-dateFin.resx">
+      <DependentUpon>201806040935592_dateDebut-dateFin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806040937230_supprHoraire.resx">
+      <DependentUpon>201806040937230_supprHoraire.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
