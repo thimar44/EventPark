@@ -1,39 +1,49 @@
 ﻿@model IEnumerable<EventPark.Models.EvenementViewModel>
 
-    @if (@User.Identity.IsAuthenticated)
+@if (@User.Identity.IsAuthenticated)
+{
+    if (@User.IsInRole("Admin"))
     {
-        if (@User.IsInRole("Admin"))
-        {
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
-        }
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+
     }
+}
 <div class="row">
     <div class="col-md-12">
         <div class="card-deck">
             @foreach (var item in Model)
             {
-                <div class="card mb-4">
+                <div class="card mb-4 h-100">
+                    <div class="card-header">
+                        <h4 class="card-title"> @Html.DisplayFor(modelItem => item.Titre)</h4>
+                    </div>
+
                     <div class="view overlay">
                         <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight waves-effect waves-light"></div>
-                        </a>
                     </div>
 
                     <div class="card-body">
-
-                        <h4 class="card-title"> @Html.DisplayFor(modelItem => item.Theme)</h4>
+                        <p class="card-text"> @Html.DisplayFor(modelItem => item.Tarif)</p>
                         <p class="card-text"> @Html.DisplayFor(modelItem => item.Descrition)</p>
+                    </div>
 
+                    <div class="card-footer">
+                        @if (@User.Identity.IsAuthenticated)
+                        {
+                            if (@User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink("Modifier", "Edit", "Evenement", new { id = item.id }, new { @class = "fa fa-edit" })
+                                @Html.ActionLink("Supprimer", "Delete", "Evenement", new { id = item.id }, new { @class = "btn btn-primary btn-large" })
+                            }
+                        }
                         @Html.ActionLink("Détail", "Details", "Evenement", new { id = item.id }, new { @class = "btn btn-primary btn-large" })
-                        
                     </div>
                 </div>
             }
-                
 
-            </div>
+
+        </div>
     </div>
 </div>
