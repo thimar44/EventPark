@@ -4,46 +4,50 @@
 {
     if (@User.IsInRole("Admin"))
     {
-        <p>
+        <div class="newEvent">
             @Html.ActionLink("Create New", "Create")
-        </p>
+        </div>
 
     }
 }
-<div class="row">
-    <div class="col-md-12">
-        <div class="card-deck">
-            @foreach (var item in Model)
-            {
-                <div class="card mb-4 h-100">
-                    <div class="card-header">
-                        <h4 class="card-title"> @Html.DisplayFor(modelItem => item.Titre)</h4>
-                    </div>
 
-                    <div class="view overlay">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-                    </div>
-
-                    <div class="card-body">
-                        <p class="card-text"> @Html.DisplayFor(modelItem => item.Tarif)</p>
-                        <p class="card-text"> @Html.DisplayFor(modelItem => item.Descrition)</p>
-                    </div>
-
-                    <div class="card-footer">
-                        @if (@User.Identity.IsAuthenticated)
-                        {
-                            if (@User.IsInRole("Admin"))
-                            {
-                                @Html.ActionLink("Modifier", "Edit", "Evenement", new { id = item.id }, new { @class = "fa fa-edit" })
-                                @Html.ActionLink("Supprimer", "Delete", "Evenement", new { id = item.id }, new { @class = "btn btn-primary btn-large" })
-                            }
-                        }
-                        @Html.ActionLink("Détail", "Details", "Evenement", new { id = item.id }, new { @class = "btn btn-primary btn-large" })
-                    </div>
+<div class="card-deck">
+    @foreach (var item in Model)
+    {
+        <div id="ficheEvenement" class="col-xl-3 col-lg-4 col-md-6">
+            <div class="card h-100 d-flex flex-column justify-content-between">
+                <div class="card-header">
+                    <h4 class="card-title"> @Html.DisplayFor(modelItem => item.Titre)</h4>
                 </div>
-            }
 
+                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
 
+                <div class="card-body">
+                    @if (item.Tarif > 0)
+                    {
+                        <p class="card-text tarif"> @Html.DisplayFor(modelItem => item.Tarif) €</p>
+                    }
+                    else
+                    {
+                        <p class="card-text tarif">Gratuit</p>
+                    }
+                    <p class="card-text"> @Html.DisplayFor(modelItem => item.DateDebut)</p>
+                    <p class="card-text"> @Html.DisplayFor(modelItem => item.Descrition)</p>
+                </div>
+
+                <div class="card-footer">
+                    @if (@User.Identity.IsAuthenticated)
+                    {
+                        if (@User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Modifier", "Edit", "Evenement", new { id = item.id }, new { @class = "btn btn-warning btn-large" })
+                            @Html.ActionLink("Supprimer", "Delete", "Evenement", new { id = item.id }, new { @class = "btn btn-danger btn-large" })
+                        }
+                    }
+
+                    @Html.ActionLink("Détail", "Details", "Evenement", new { id = item.id }, new { @class = "btn btn-primary btn-large" })
+                </div>
+            </div>
         </div>
-    </div>
+    }
 </div>

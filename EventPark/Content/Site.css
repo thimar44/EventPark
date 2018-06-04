@@ -32,18 +32,17 @@ img.logo {
 }
 
 
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-}
+    .carousel-item img {
+        width: 100%;
+        height: 100%;
+    }
 
 .container {
     background-color: white;
 }
 
 body {
-    background-image: linear-gradient(to bottom, #fff 0%, #74e4f4 100%);
-    background-repeat: repeat-x;
+    background-image: url("../Images/bg.jpg");
     
 }
 
@@ -52,21 +51,11 @@ body {
     padding: 1rem;
 }
 
-.container.body-content{
-    min-height:800px
+.container.body-content {
+    min-height: 800px
 }
 
 footer {
     text-align: center;
 }
-
-
-.iframeGoogleRow {
-    text-align:center;
-}
-
-
-.iframeGoogleRow iframe{
-    margin-left: auto;
-    margin-right: auto;
 }
