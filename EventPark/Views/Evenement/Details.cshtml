@@ -4,71 +4,92 @@
     ViewBag.Title = "Detail";
 }
 
-<h2>Detail</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <h4 class="event-title"> @Html.DisplayFor(model => model.Titre)</h4>
+        </div>
+        <div class="col-md-2">
+            <h4> @Html.DisplayFor(model => model.Tarif)€</h4>
+        </div>
+    </div>
 
-<div>
-    <h4>EvenementViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Theme)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Theme)
-        </dd>
+    <div class="row">
+        <div class="col-md-12">
+            @*@foreach (var image in Model.Images)
+                {
+                    <img class="" src="@image.Url" alt="Card image cap">
+                }*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
+            <div id="MonCarousel" class="carousel slide" data-ride="carousel">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Horaire)
-        </dt>
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#MonCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#MonCarousel" data-slide-to="1"></li>
+                    <li data-target="#MonCarousel" data-slide-to="2"></li>
+                </ul>
 
-        <dd>
-            @Html.DisplayFor(model => model.Horaire)
-        </dd>
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://cdn-s-www.estrepublicain.fr/images/B02D234B-C642-4285-BCD6-C7A1DD61B2AB/LER_22/christian-guinchard-a-prepare-une-tonne-de-saucisses-pour-l-evenement-1462728049.jpg" alt="Los Angeles">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://static.ladepeche.fr/content/media/image/large/2015/07/23/201507231232-full.jpg" alt="Chicago">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.ytimg.com/vi/IjQlNRGX4jA/maxresdefault.jpg" alt="New York">
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Duree)
-        </dt>
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#MonCarousel" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#MonCarousel" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
 
-        <dd>
-            @Html.DisplayFor(model => model.Duree)
-        </dd>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descrition)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descrition)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Titre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Titre)
-        </dd>
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                @Html.DisplayFor(model => model.Adresse.Rue),@Html.DisplayFor(model => model.Adresse.CodePostal), @Html.DisplayFor(model => model.Adresse.Ville)
+            </p>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Tarif)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Tarif)
-        </dd>
 
-    </dl>
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                @Html.DisplayFor(model => model.Date), @Html.DisplayFor(model => model.Horaire),  @Html.DisplayFor(model => model.Duree)
+            </p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <p> @Html.DisplayFor(model => model.Descrition)</p>
+        </div>
+    </div>
+
+
+    <iframe width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDRcX-jIZfNUkv60rhhzHO-mDHy2ZK-Imk&q=Eiffel+Tower,Paris+France
+    &q=Space+Needle,Seattle+WA" allowfullscreen></iframe>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
