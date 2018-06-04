@@ -22,8 +22,6 @@ namespace EventPark.Services
             return retour;
         }
 
-
-
         public static Evenement Get(Guid id)
         {
             Evenement retour = null;
@@ -34,7 +32,6 @@ namespace EventPark.Services
             }
             return retour;
         }
-
 
         private static Evenement Get(Guid id, EparkContext context)
         {
