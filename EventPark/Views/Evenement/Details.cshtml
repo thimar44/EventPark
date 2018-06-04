@@ -14,10 +14,10 @@
     <div class="row">
         <div class="col-md-12">
             <h4 class="event-title"> @Html.DisplayFor(model => model.Titre)</h4>
-            <h3> @Html.DisplayFor(model => model.Tarif)€</h3>
-            <h3> @Html.DisplayFor(model => model.Tarif)€</h3>
-            <h3> @Html.DisplayFor(model => model.Adresse.Rue),@Html.DisplayFor(model => model.Adresse.CodePostal), @Html.DisplayFor(model => model.Adresse.Ville)</h3>
-            <h3> @Html.DisplayFor(model => model.DateDebut), @Html.DisplayFor(model => model.DateFin)</h3>
+            <p> tarif  :  @Html.DisplayFor(model => model.Tarif)€</p>
+            <p> lieu : @Html.DisplayFor(model => model.Adresse.Rue),@Html.DisplayFor(model => model.Adresse.CodePostal), @Html.DisplayFor(model => model.Adresse.Ville)</p>
+            <p> Début : @Html.DisplayFor(model => model.DateDebut) </p>
+            <p> Fin : @Html.DisplayFor(model => model.DateFin)</p>
 </div>
         
     </div>
@@ -78,8 +78,6 @@
 
                     var placeNap = { lat: 46.670706, lng: -1.426700 };
                     var eni = { lat: 47.226195, lng: -1.619367 };
-
-
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 12,
                         center: placeNap
@@ -98,8 +96,6 @@
 
                     var directionsService = new google.maps.DirectionsService();
                     var directionsDisplay = new google.maps.DirectionsRenderer();
-
-                   
                     directionsDisplay.setMap(map);
                     directionsDisplay.setPanel(document.getElementById('panel'));
 

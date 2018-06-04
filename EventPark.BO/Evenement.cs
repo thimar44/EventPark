@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace EventPark.BO
@@ -28,6 +29,7 @@ namespace EventPark.BO
         
         public String Theme { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime DateDebut { get; set; }
 
         public DateTime DateFin { get; set; }
