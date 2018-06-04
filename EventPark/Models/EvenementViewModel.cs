@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using EventPark.Services;
+using System.ComponentModel.DataAnnotations;
+
 namespace EventPark.Models
 {
     public class EvenementViewModel:ViewModel<Evenement>
@@ -28,6 +30,9 @@ namespace EventPark.Models
             }
         }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh:mm:ss}", ApplyFormatInEditMode = true)]
+        [Display(Name ="Date de début")]
         public DateTime DateDebut
         {
             get
@@ -40,6 +45,9 @@ namespace EventPark.Models
             }
         }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh:mm:ss}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date de fin")]
         public DateTime DateFin
         {
             get
@@ -49,18 +57,6 @@ namespace EventPark.Models
             set
             {
                 this.Metier.DateFin = value;
-            }
-        }
-
-        public int Duree
-        {
-            get
-            {
-                return this.Metier.Duree;
-            }
-            set
-            {
-                this.Metier.Duree = value;
             }
         }
 

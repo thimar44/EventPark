@@ -31,7 +31,10 @@
                     {
                         <p class="card-text tarif">Gratuit</p>
                     }
-                    <p class="card-text"> @Html.DisplayFor(modelItem => item.DateDebut)</p>
+                    <p class="card-text">
+                        Du: @Html.DisplayFor(modelItem => item.DateDebut)
+                        au: @Html.DisplayFor(modelItem => item.DateFin)
+                    </p>
                     <p class="card-text"> @Html.DisplayFor(modelItem => item.Descrition)</p>
                 </div>
 
