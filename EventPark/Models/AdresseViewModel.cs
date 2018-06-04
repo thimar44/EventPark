@@ -40,6 +40,29 @@ namespace EventPark.Models
             }
         }
 
+        public String UrlGoogle
+        {
+            get
+            {
+                return this.Metier.UrlGoogle;
+            }
+            set
+            {
+                this.Metier.UrlGoogle = value;
+            }
+        }
+
+        public String Libelle
+        {
+            get
+            {
+                return this.Metier.Libelle;
+            }
+            set
+            {
+                this.Metier.Libelle = value;
+            }
+        }
 
         
 

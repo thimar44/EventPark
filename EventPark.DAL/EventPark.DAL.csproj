@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201806011244252_ajout_image.Designer.cs">
       <DependentUpon>201806011244252_ajout_image.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806040753472_adresse_libelle.cs" />
+    <Compile Include="Migrations\201806040753472_adresse_libelle.Designer.cs">
+      <DependentUpon>201806040753472_adresse_libelle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -112,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806011244252_ajout_image.resx">
       <DependentUpon>201806011244252_ajout_image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806040753472_adresse_libelle.resx">
+      <DependentUpon>201806040753472_adresse_libelle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

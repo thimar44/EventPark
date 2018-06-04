@@ -18,7 +18,6 @@ namespace EventPark.Services
             using (EparkContext context = new EparkContext())
             {
                 retour = context.Adresses.ToList();
-
             }
             return retour;
         }
@@ -31,7 +30,6 @@ namespace EventPark.Services
             using (EparkContext context = new EparkContext())
             {
                 retour = Get(id, context);
-
             }
             return retour;
         }
@@ -64,7 +62,8 @@ namespace EventPark.Services
                 aExistant.CoordX = a.CoordX;
                 aExistant.Epsg = a.Epsg;
                 aExistant.CoordY = a.CoordY;
-
+                aExistant.Libelle = a.Libelle;
+                aExistant.UrlGoogle = a.UrlGoogle;
                 context.SaveChanges();
             }
         }

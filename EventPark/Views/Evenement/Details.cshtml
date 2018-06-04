@@ -78,18 +78,21 @@
         </div>
     </div>
 
+    @{
+        string url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDRcX-jIZfNUkv60rhhzHO-mDHy2ZK-Imk&q=" + @Html.DisplayFor(model => model.Adresse.Rue) + "+" + @Html.DisplayFor(model => model.Adresse.CodePostal) + "+" + @Html.DisplayFor(model => model.Adresse.Ville);
+        //string url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDRcX-jIZfNUkv60rhhzHO-mDHy2ZK-Imk&q=Eiffel+Tower,Paris+France";
+    }
 
     <div class="row">
         <div class="col-md-12">
             <p> @Html.DisplayFor(model => model.Descrition)</p>
         </div>
     </div>
-
+    @url
 
     <iframe width="600"
             height="450"
             frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDRcX-jIZfNUkv60rhhzHO-mDHy2ZK-Imk&q=Eiffel+Tower,Paris+France
-    &q=Space+Needle,Seattle+WA" allowfullscreen></iframe>
+            src=@url allowfullscreen></iframe>
 
 </div>
