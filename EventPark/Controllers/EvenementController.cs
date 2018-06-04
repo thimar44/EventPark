@@ -54,9 +54,9 @@ namespace EventPark.Controllers
         // GET: Evenement/Details/5
         public ActionResult Details(Guid id)
         {
-            EvenementViewModel test = EvenementViewModel.Get(id);
+            EvenementViewModel vm = EvenementViewModel.Get(id);
 
-            return View(test);
+            return View(vm);
         }
 
         // GET: Evenement/Create
@@ -91,7 +91,7 @@ namespace EventPark.Controllers
 
         // POST: Evenement/Edit/5
         [HttpPost]
-        public ActionResult Edit(Guid id, FormCollection collection)
+        public ActionResult Edit(Guid id, EvenementViewModel vm)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace EventPark.Controllers
 
         // POST: Evenement/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, EvenementViewModel vm)
         {
             try
             {
