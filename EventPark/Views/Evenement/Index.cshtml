@@ -5,9 +5,8 @@
     if (@User.IsInRole("Admin"))
     {
         <div class="newEvent">
-            @Html.ActionLink("Create New", "Create")
+            @Html.ActionLink("Create New", "Create", "Evenement", new { @class = "btn btn-success btn-block" })
         </div>
-
     }
 }
 
