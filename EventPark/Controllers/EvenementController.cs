@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,37 +15,6 @@ namespace EventPark.Controllers
         // GET: Evenement
         public ActionResult Index()
         {
-            /*
-            Adresse a1 = new Adresse(Guid.NewGuid(), "rue de la marte", "44140", "montbert", 0, 0, 0);
-            Adresse a2 = new Adresse(Guid.NewGuid(), "rue de l'eni", "44500", "Saint herblain", 0, 0, 0);
-            Adresse a3 = new Adresse(Guid.NewGuid(), "boulevard de la mort", "44000", "Nantes", 0, 0, 0);
-            Adresse a4 = new Adresse(Guid.NewGuid(), "place napoléon", "85000", "La Roche sur Yon", 0, 0, 0);
-            Adresse a5 = new Adresse(Guid.NewGuid(), "place napoléon", "85000", "La Roche sur Yon", 0, 0, 0);
-            Adresse a6 = new Adresse(Guid.NewGuid(), "place napoléon", "85000", "La Roche sur Yon", 0, 0, 0);
-
-            Evenement e1 = new Evenement(Guid.NewGuid(), "fête", new DateTime(2014, 6, 14, 6, 32, 0), "Fête de la saucisse", "15h",600,a1,"On mange, on boit, on rigole", 15, null );
-            Evenement e2 = new Evenement(Guid.NewGuid(), "concert", new DateTime(2014, 6, 14, 6, 32, 0), "Metallica", "21h", 120, a2, "Du gros rock", 0, null);
-            Evenement e3 = new Evenement(Guid.NewGuid(), "concert", new DateTime(2014, 6, 14, 6, 32, 0), "Sylvie Vartan", "19h", 180, a3, "Sylvie vartan en folie", 15, null);
-            Evenement e4 = new Evenement(Guid.NewGuid(), "fête", new DateTime(2014, 6, 14, 6, 32, 0), "Fête des merguez", "15h", 600, a4, "Par ce que la merguez c'est meilleur !!", 15, null);
-            Evenement e5 = new Evenement(Guid.NewGuid(), "danse", new DateTime(2014, 6, 14, 6, 32, 0), "Cours de danse classique", "15h", 120, a1, "ça va guincher !!", 15, null);
-            Evenement e6 = new Evenement(Guid.NewGuid(), "concert", new DateTime(2014, 6, 14, 6, 32, 0), "Mickael Jackson", "22h", 120, a4, "Et oui il n'st pas mort, il vie en vendée depuis 5 ans", 15, null);
-        
-
-            EvenementViewModel eV1 = new EvenementViewModel(e1);
-            EvenementViewModel eV2 = new EvenementViewModel(e2);
-            EvenementViewModel eV3 = new EvenementViewModel(e3);
-            EvenementViewModel eV4 = new EvenementViewModel(e4);
-            EvenementViewModel eV5 = new EvenementViewModel(e5);
-            EvenementViewModel eV6 = new EvenementViewModel(e6);
-            
-
-            eV1.Insert();
-            eV2.Insert();
-            eV3.Insert();
-            eV4.Insert();
-            eV5.Insert();
-            eV6.Insert();
-            */
             List<EvenementViewModel> lst = new List<EvenementViewModel>();
 
             lst = EvenementViewModel.GetAll();
@@ -71,7 +41,28 @@ namespace EventPark.Controllers
         {
             try
             {
-                vm.id = Guid.NewGuid();
+                if (Request.Files.Count > 0)
+                {
+                    for (int i = 0; i < Request.Files.Count; i++)
+                    {
+                        Image img = new Image();
+                        var fileI = Request.Files[i];
+                        if (fileI != null && fileI.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(fileI.FileName);
+                            var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                            if (!System.IO.File.Exists(path))
+                            {
+                                fileI.SaveAs(path);
+                                img.id = Guid.NewGuid();
+                                img.Url = fileName;
+
+                                vm.Images.Add(img);
+                            }
+                        }
+                    }
+                }
+
                 vm.Insert();
 
                 return RedirectToAction("Index");
@@ -86,7 +77,8 @@ namespace EventPark.Controllers
         // GET: Evenement/Edit/5
         public ActionResult Edit(Guid id)
         {
-            return View();
+            EvenementViewModel vm = EvenementViewModel.Get(id);
+            return View(vm);
         }
 
         // POST: Evenement/Edit/5
@@ -95,7 +87,7 @@ namespace EventPark.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                vm.Update();
 
                 return RedirectToAction("Index");
             }

@@ -108,6 +108,7 @@ namespace EventPark.Models
             }
         }
 
+        [DataType(DataType.Upload)]
         public List<Image> Images
         {
             get
