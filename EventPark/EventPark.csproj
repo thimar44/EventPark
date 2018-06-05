@@ -221,6 +221,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\bg.jpg" />
+    <Content Include="Images\e0d7ac2d-cc53-4e4f-b86e-c61f04f598b5\1f00210b-371c-4aa1-a662-a5c287eebfbe.jpg" />
+    <Content Include="Images\e0d7ac2d-cc53-4e4f-b86e-c61f04f598b5\8fd93144-7710-4b06-861e-7b48e4c16c59.JPG" />
+    <Content Include="Images\e0d7ac2d-cc53-4e4f-b86e-c61f04f598b5\f054c5aa-bb83-4ea3-8959-41007d7afdd1.jpg" />
     <Content Include="Images\logo.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

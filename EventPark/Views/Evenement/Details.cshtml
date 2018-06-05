@@ -13,42 +13,52 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h4 class="event-title"> @Html.DisplayFor(model => model.Titre)</h4>
-            <p> tarif  :  @Html.DisplayFor(model => model.Tarif)€</p>
-            <p> lieu : @Html.DisplayFor(model => model.Adresse.Rue),@Html.DisplayFor(model => model.Adresse.CodePostal), @Html.DisplayFor(model => model.Adresse.Ville)</p>
-            <p> Début : @Html.DisplayFor(model => model.DateDebut) </p>
-            <p> Fin : @Html.DisplayFor(model => model.DateFin)</p>
-</div>
-        
+            <h4 class="event-title event-title-detail"> @Html.DisplayFor(model => model.Titre)</h4>
+            <p>
+                tarif  :  @Html.DisplayFor(model => model.Tarif)€<br />
+                lieu : @Html.DisplayFor(model => model.Adresse.Rue), @Html.DisplayFor(model => model.Adresse.CodePostal) @Html.DisplayFor(model => model.Adresse.Ville)<br />
+                Début : @Html.DisplayFor(model => model.DateDebut) <br />
+                Fin : @Html.DisplayFor(model => model.DateFin)
+            </p>
+        </div>
+
     </div>
 
 
     <div class="row">
         <div class="col-md-12">
-            @*@foreach (var image in Model.Images)
-                {
-                    <img class="" src="@image.Url" alt="Card image cap">
-                }*@
             <div id="MonCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ul class="carousel-indicators">
-                    <li data-target="#MonCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#MonCarousel" data-slide-to="1"></li>
-                    <li data-target="#MonCarousel" data-slide-to="2"></li>
+
+                    @{
+                        int counter = 0;
+
+                        foreach (var image in Model.Images)
+                        {
+                            <li data-target="#MonCarousel" data-slide-to="@counter"></li>
+                            counter = counter + 1;
+                        }
+                    }
+                   
+
+                    
                 </ul>
 
                 <!-- The slideshow -->
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://cdn-s-www.estrepublicain.fr/images/B02D234B-C642-4285-BCD6-C7A1DD61B2AB/LER_22/christian-guinchard-a-prepare-une-tonne-de-saucisses-pour-l-evenement-1462728049.jpg" alt="Los Angeles">
+                    @{
+                        int counter2 = 0;
+                        string active = " active";
+                        foreach (var image in Model.Images)
+                        {
+                            <div class="carousel-item @if (counter2 == 0) { @active } ">
+                                    <img class="" src="../../@image.Url">
+                            </div>
+                            counter2 = counter2 + 1;
+                        }
+                     }
                     </div>
-                    <div class="carousel-item">
-                        <img src="https://static.ladepeche.fr/content/media/image/large/2015/07/23/201507231232-full.jpg" alt="Chicago">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://i.ytimg.com/vi/IjQlNRGX4jA/maxresdefault.jpg" alt="New York">
-                    </div>
-                </div>
 
                 <a class="carousel-control-prev" href="#MonCarousel" data-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
@@ -59,24 +69,61 @@
 
             </div>
         </div>
-    </div>
 
+    </div>
+    <hr />
 
     <div class="row">
         <div class="col-md-12">
             <p> @Html.DisplayFor(model => model.Descrition)</p>
         </div>
     </div>
-
+    <hr />
     <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron jumbotron-fluid">
+
+                <h2>Rechercher un parking à proximité :</h2>
+
+
+                <form autocomplete="off">
+                    <div class="autocomplete">
+                        <input id="addressInput" type="text" name="addressInput" onkeyup="getGeoCode()" placeholder="Entrez votre adresse" style="width:400px;">
+                        <button>rechercher !</button>
+                    </div>
+                </form>
+
+
+
+
+            </div>
+        </div>
         <div class="col-md-12">
             <div id="panel" style="display:  none;"></div>
             <div id="map"></div>
-
             <script>
+
+                function getGeoCode() {
+                    var userInput = $("input#addressInput").val();
+                    console.log(userInput);
+                    $.getJSON({
+                        url: 'https://maps.googleapis.com/maps/api/geocode/json',
+                        data: {
+                            key: "AIzaSyAXEJ9Kcn0hWuIFxXRK6E5QwjMjb9_n9Ew",
+                            address: userInput
+                        },
+                        success: function (data, textStatus) {
+                            console.log(textStatus, data);
+                            var countries = ["Afghanistan", "Albania", "Algeria", "Andorra"];
+                            autocomplete(document.getElementById("addressInput"), countries);
+                        }
+                    });
+                };
+
+
                 function initMap() {
 
-                    var placeNap = { lat: 46.670706, lng: -1.426700 };
+                    var placeNap = { lat: 47.226195, lng: -1.619387 };
                     var eni = { lat: 47.226195, lng: -1.619367 };
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 12,
@@ -94,23 +141,116 @@
                         icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
                     });
 
-                    var directionsService = new google.maps.DirectionsService();
-                    var directionsDisplay = new google.maps.DirectionsRenderer();
-                    directionsDisplay.setMap(map);
-                    directionsDisplay.setPanel(document.getElementById('panel'));
+                    //var directionsService = new google.maps.DirectionsService();
+                    //var directionsDisplay = new google.maps.DirectionsRenderer();
+                    //directionsDisplay.setMap(map);
+                    //directionsDisplay.setPanel(document.getElementById('panel'));
 
-                    var request = {
-                        origin: placeNap,
-                        destination: "4 Avenue Marcelin Berthelot, 44800 Saint - Herblain, France",
-                        travelMode: google.maps.DirectionsTravelMode.DRIVING
-                    };
+                    //var request = {
+                    //    origin: placeNap,
+                    //    destination: "4 Avenue Marcelin Berthelot, 44800 Saint - Herblain, France",
+                    //    travelMode: google.maps.DirectionsTravelMode.DRIVING
+                    //};
 
-                    directionsService.route(request, function (response, status) {
-                        if (status == google.maps.DirectionsStatus.OK) {
-                            directionsDisplay.setDirections(response);
+                    //directionsService.route(request, function (response, status) {
+                    //    if (status == google.maps.DirectionsStatus.OK) {
+                    //        directionsDisplay.setDirections(response);
+                    //    }
+                    //});
+                }
+
+
+
+                function autocomplete(inp, arr) {
+                    var currentFocus;
+                    inp.addEventListener("input", function (e) {
+                        var a, b, i, val = this.value;
+                        closeAllLists();
+                        if (!val) { return false; }
+                        currentFocus = -1;
+                        a = document.createElement("DIV");
+                        a.setAttribute("id", this.id + "autocomplete-list");
+                        a.setAttribute("class", "autocomplete-items");
+                        this.parentNode.appendChild(a);
+                        for (i = 0; i < arr.length; i++) {
+                            if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                                b = document.createElement("DIV");
+                                /*make the matching letters bold:*/
+                                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                                b.innerHTML += arr[i].substr(val.length);
+                                /*insert a input field that will hold the current array item's value:*/
+                                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                                /*execute a function when someone clicks on the item value (DIV element):*/
+                                b.addEventListener("click", function (e) {
+                                    /*insert the value for the autocomplete text field:*/
+                                    inp.value = this.getElementsByTagName("input")[0].value;
+                                    /*close the list of autocompleted values,
+                                    (or any other open lists of autocompleted values:*/
+                                    closeAllLists();
+                                });
+                                a.appendChild(b);
+                            }
                         }
                     });
+                    /*execute a function presses a key on the keyboard:*/
+                    inp.addEventListener("keydown", function (e) {
+                        var x = document.getElementById(this.id + "autocomplete-list");
+                        if (x) x = x.getElementsByTagName("div");
+                        if (e.keyCode == 40) {
+                            /*If the arrow DOWN key is pressed,
+                            increase the currentFocus variable:*/
+                            currentFocus++;
+                            /*and and make the current item more visible:*/
+                            addActive(x);
+                        } else if (e.keyCode == 38) { //up
+                            /*If the arrow UP key is pressed,
+                            decrease the currentFocus variable:*/
+                            currentFocus--;
+                            /*and and make the current item more visible:*/
+                            addActive(x);
+                        } else if (e.keyCode == 13) {
+                            /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                            e.preventDefault();
+                            if (currentFocus > -1) {
+                                /*and simulate a click on the "active" item:*/
+                                if (x) x[currentFocus].click();
+                            }
+                        }
+                    });
+                    function addActive(x) {
+                        /*a function to classify an item as "active":*/
+                        if (!x) return false;
+                        /*start by removing the "active" class on all items:*/
+                        removeActive(x);
+                        if (currentFocus >= x.length) currentFocus = 0;
+                        if (currentFocus < 0) currentFocus = (x.length - 1);
+                        /*add class "autocomplete-active":*/
+                        x[currentFocus].classList.add("autocomplete-active");
+                    }
+                    function removeActive(x) {
+                        /*a function to remove the "active" class from all autocomplete items:*/
+                        for (var i = 0; i < x.length; i++) {
+                            x[i].classList.remove("autocomplete-active");
+                        }
+                    }
+                    function closeAllLists(elmnt) {
+                        /*close all autocomplete lists in the document,
+                        except the one passed as an argument:*/
+                        var x = document.getElementsByClassName("autocomplete-items");
+                        for (var i = 0; i < x.length; i++) {
+                            if (elmnt != x[i] && elmnt != inp) {
+                                x[i].parentNode.removeChild(x[i]);
+                            }
+                        }
+                    }
+                    /*execute a function when someone clicks in the document:*/
+                    document.addEventListener("click", function (e) {
+                        closeAllLists(e.target);
+                    });
                 }
+
+                
+
             </script>
             <script async defer
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXEJ9Kcn0hWuIFxXRK6E5QwjMjb9_n9Ew&callback=initMap">
@@ -118,5 +258,5 @@
         </div>
     </div>
 
-   
+
 </div>
