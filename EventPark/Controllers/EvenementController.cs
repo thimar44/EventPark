@@ -72,6 +72,7 @@ namespace EventPark.Controllers
             try
             {
                 vm.id = Guid.NewGuid();
+
                 vm.Insert();
 
                 return RedirectToAction("Index");
