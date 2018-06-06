@@ -35,10 +35,14 @@
 }
 
 body {
-    background-image: -webkit-linear-gradient(top, #fff 50%, #ccc 100%);
-    background-image: -o-linear-gradient(top, #fff 50%, #ccc 100%);
-    background-image: linear-gradient(to bottom, #000099 50%, #9933ff 100%);
-    background-repeat: repeat-x;
+    background: rgba(188,224,238,1);
+    background: -moz-linear-gradient(top, rgba(188,224,238,1) 0%, rgba(41,184,229,1) 50%, rgba(179,220,237,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(188,224,238,1)), color-stop(50%, rgba(41,184,229,1)), color-stop(100%, rgba(179,220,237,1)));
+    background: -webkit-linear-gradient(top, rgba(188,224,238,1) 0%, rgba(41,184,229,1) 50%, rgba(179,220,237,1) 100%);
+    background: -o-linear-gradient(top, rgba(188,224,238,1) 0%, rgba(41,184,229,1) 50%, rgba(179,220,237,1) 100%);
+    background: -ms-linear-gradient(top, rgba(188,224,238,1) 0%, rgba(41,184,229,1) 50%, rgba(179,220,237,1) 100%);
+    background: linear-gradient(to bottom, rgba(188,224,238,1) 0%, rgba(41,184,229,1) 50%, rgba(179,220,237,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bce0ee', endColorstr='#b3dced', GradientType=0 );
 }
 
 .event-title {
@@ -163,8 +167,12 @@ html, body {
     display: inline;
 }
 
-.card-title{
-    min-height: 45px;
+.card-title {
+    min-height: 50px;
+    font-size: 20px;
+    display: block;
+    margin: auto;
+    text-align: center;
 }
 
 #ficheEvenement {
@@ -172,4 +180,29 @@ html, body {
 }
 .choiceLi:hover {
     background-color: yellow;
+}
+
+.card-img-top {
+    height: 150px;
+}
+
+.card-body p {
+    margin-bottom: 0px;
+    font-size: 0.8rem;
+}
+
+@media (min-width: 576px) {
+    .card-deck .card {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+}
+
+.card-deck {
+    padding-top: 40px;
+}
+
+footer p {
+    margin-bottom: 0px;
+    padding-bottom: 1rem;
 }
