@@ -89,7 +89,12 @@
                 <form autocomplete="off">
                     <div class="autocomplete">
                         <input id="addressInput" type="text" name="addressInput" onkeyup="getGeoCode()" placeholder="Entrez votre adresse" style="width:400px;">
-                        <button>rechercher !</button>
+                       
+                        <div class="choiceDiv">
+                            <ul class="choiceUl">
+                               
+                            </ul>
+                        </div>
                     </div>
                 </form>
 
@@ -102,10 +107,19 @@
             <div id="panel" style="display:  none;"></div>
             <div id="map"></div>
             <script>
+                var gmarkers = [];
+                var map;
+                var eventCoordinate;
+                var userCoordinate;
+                var coordinateSelected;
+                var latSelected;
+                var lngSelected;
+                var directionsService;
+                var directionsDisplay;
+
 
                 function getGeoCode() {
                     var userInput = $("input#addressInput").val();
-                    console.log(userInput);
                     $.getJSON({
                         url: 'https://maps.googleapis.com/maps/api/geocode/json',
                         data: {
@@ -113,144 +127,125 @@
                             address: userInput
                         },
                         success: function (data, textStatus) {
-                            console.log(textStatus, data);
-                            var countries = ["Afghanistan", "Albania", "Algeria", "Andorra"];
-                            autocomplete(document.getElementById("addressInput"), countries);
+                            $(".choiceUl").empty();
+                            var idChoice = 0;
+                            for (result in data.results) {
+                                $(".choiceUl").append('<li id=choice'+ idChoice+' class="choiceLi" lng=' + data.results[result].geometry.location.lng + ' lat=' + data.results[result].geometry.location.lat + ' onClick="clickOnChoice(' + idChoice + ')">' + data.results[result].formatted_address + '</li>');
+                                idChoice = idChoice + 1;
+                            };
+                            
                         }
                     });
                 };
 
 
-                function initMap() {
+                function loadParks() {
+                    $.ajax({
+                        type: 'POST',
+                        url: "../../Map/LoadParking",
+                        data: JSON.stringify({
+                            latUser: latSelected,
+                            lngUser: lngSelected,
+                            latEvent: "@Html.DisplayFor(model => model.Adresse.CoordX)",
+                            lngEvent: "@Html.DisplayFor(model => model.Adresse.CoordY)"
+                        }),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        success: function (msg) {
+                            
+                            $.each(msg, function (key, value) {
+                                console.log(value);
+                                var coordinate = new google.maps.LatLng(value.adresse.CoordY, value.adresse.CoordX);
+                                var parkingMarker = new google.maps.Marker({
+                                    position: coordinate,
+                                    icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                                    map: map
+                                });
 
-                    var placeNap = { lat: 47.226195, lng: -1.619387 };
-                    var eni = { lat: 47.226195, lng: -1.619367 };
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 12,
-                        center: placeNap
+                                parkingMarker.addListener('click', function () {
+                                    //var directionsService = new google.maps.DirectionsService();
+                                    //var directionsDisplay = new google.maps.DirectionsRenderer();
+                                    directionsDisplay.setMap(null);
+                                    directionsDisplay.setPanel(null);
+
+                                    directionsDisplay.setMap(map);
+                                    directionsDisplay.setPanel(document.getElementById('panel'));
+
+                                    var request = {
+                                        origin: coordinateSelected,
+                                        destination: coordinate,
+                                        travelMode: google.maps.DirectionsTravelMode.DRIVING
+                                    };
+                                    directionsDisplay.setDirections({ routes: [] });
+                                    directionsService.route(request, function (response, status) {
+                                        if (status == google.maps.DirectionsStatus.OK) {
+                                            directionsDisplay.setDirections(response);
+                                        }
+                                    });
+                                });
+                               
+                            });
+                        }
                     });
+                }
 
-                    var marker = new google.maps.Marker({
-                        position: placeNap,
+                function clickOnChoice(idChoice) {
+                    var elementSelected = $("#choice" + idChoice);
+                    $("#addressInput").val(elementSelected.text());
+                    latSelected = elementSelected.attr("lat");
+                    lngSelected = elementSelected.attr("lng");
+                    coordinateSelected = new google.maps.LatLng(latSelected, lngSelected);
+                    $(".choiceUl").empty();
+
+
+                    var userMarker = new google.maps.Marker({
+                        position: coordinateSelected,
                         map: map
                     });
 
-                    var marker = new google.maps.Marker({
-                        position: eni,
-                        map: map,
-                        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-                    });
+                    gmarkers.push(userMarker);
 
-                    //var directionsService = new google.maps.DirectionsService();
-                    //var directionsDisplay = new google.maps.DirectionsRenderer();
-                    //directionsDisplay.setMap(map);
-                    //directionsDisplay.setPanel(document.getElementById('panel'));
-
-                    //var request = {
-                    //    origin: placeNap,
-                    //    destination: "4 Avenue Marcelin Berthelot, 44800 Saint - Herblain, France",
-                    //    travelMode: google.maps.DirectionsTravelMode.DRIVING
-                    //};
-
-                    //directionsService.route(request, function (response, status) {
-                    //    if (status == google.maps.DirectionsStatus.OK) {
-                    //        directionsDisplay.setDirections(response);
-                    //    }
-                    //});
-                }
-
-
-
-                function autocomplete(inp, arr) {
-                    var currentFocus;
-                    inp.addEventListener("input", function (e) {
-                        var a, b, i, val = this.value;
-                        closeAllLists();
-                        if (!val) { return false; }
-                        currentFocus = -1;
-                        a = document.createElement("DIV");
-                        a.setAttribute("id", this.id + "autocomplete-list");
-                        a.setAttribute("class", "autocomplete-items");
-                        this.parentNode.appendChild(a);
-                        for (i = 0; i < arr.length; i++) {
-                            if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                                b = document.createElement("DIV");
-                                /*make the matching letters bold:*/
-                                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                                b.innerHTML += arr[i].substr(val.length);
-                                /*insert a input field that will hold the current array item's value:*/
-                                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                                /*execute a function when someone clicks on the item value (DIV element):*/
-                                b.addEventListener("click", function (e) {
-                                    /*insert the value for the autocomplete text field:*/
-                                    inp.value = this.getElementsByTagName("input")[0].value;
-                                    /*close the list of autocompleted values,
-                                    (or any other open lists of autocompleted values:*/
-                                    closeAllLists();
-                                });
-                                a.appendChild(b);
-                            }
-                        }
-                    });
-                    /*execute a function presses a key on the keyboard:*/
-                    inp.addEventListener("keydown", function (e) {
-                        var x = document.getElementById(this.id + "autocomplete-list");
-                        if (x) x = x.getElementsByTagName("div");
-                        if (e.keyCode == 40) {
-                            /*If the arrow DOWN key is pressed,
-                            increase the currentFocus variable:*/
-                            currentFocus++;
-                            /*and and make the current item more visible:*/
-                            addActive(x);
-                        } else if (e.keyCode == 38) { //up
-                            /*If the arrow UP key is pressed,
-                            decrease the currentFocus variable:*/
-                            currentFocus--;
-                            /*and and make the current item more visible:*/
-                            addActive(x);
-                        } else if (e.keyCode == 13) {
-                            /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                            e.preventDefault();
-                            if (currentFocus > -1) {
-                                /*and simulate a click on the "active" item:*/
-                                if (x) x[currentFocus].click();
-                            }
-                        }
-                    });
-                    function addActive(x) {
-                        /*a function to classify an item as "active":*/
-                        if (!x) return false;
-                        /*start by removing the "active" class on all items:*/
-                        removeActive(x);
-                        if (currentFocus >= x.length) currentFocus = 0;
-                        if (currentFocus < 0) currentFocus = (x.length - 1);
-                        /*add class "autocomplete-active":*/
-                        x[currentFocus].classList.add("autocomplete-active");
+                    for (i = 0; i < gmarkers.length; i++) {
+                        gmarkers[i].setMap(null);
                     }
-                    function removeActive(x) {
-                        /*a function to remove the "active" class from all autocomplete items:*/
-                        for (var i = 0; i < x.length; i++) {
-                            x[i].classList.remove("autocomplete-active");
+
+                    directionsService = new google.maps.DirectionsService();
+                    directionsDisplay = new google.maps.DirectionsRenderer();
+                    directionsDisplay.setMap(map);
+                    directionsDisplay.setPanel(document.getElementById('panel'));
+                    
+                    var request = {
+                        origin: coordinateSelected,
+                        destination: eventCoordinate,
+                        travelMode: google.maps.DirectionsTravelMode.DRIVING
+                    };
+
+                    directionsService.route(request, function (response, status) {
+                        if (status == google.maps.DirectionsStatus.OK) {
+                            directionsDisplay.setDirections(response);
                         }
-                    }
-                    function closeAllLists(elmnt) {
-                        /*close all autocomplete lists in the document,
-                        except the one passed as an argument:*/
-                        var x = document.getElementsByClassName("autocomplete-items");
-                        for (var i = 0; i < x.length; i++) {
-                            if (elmnt != x[i] && elmnt != inp) {
-                                x[i].parentNode.removeChild(x[i]);
-                            }
-                        }
-                    }
-                    /*execute a function when someone clicks in the document:*/
-                    document.addEventListener("click", function (e) {
-                        closeAllLists(e.target);
                     });
+
+                    loadParks();
+
                 }
 
                 
-
+                function initMap() {
+                    eventCoordinate = new google.maps.LatLng("@Html.DisplayFor(model => model.Adresse.CoordX)".replace(',', '.'), "@Html.DisplayFor(model => model.Adresse.CoordY)".replace(',', '.'));
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 12,
+                        center: eventCoordinate
+                    });
+                    var eventMarker = new google.maps.Marker({
+                        position: eventCoordinate,
+                        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                       
+                        map: map
+                        //    icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                    });
+                    gmarkers.push(eventMarker);
+                }
             </script>
             <script async defer
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXEJ9Kcn0hWuIFxXRK6E5QwjMjb9_n9Ew&callback=initMap">

@@ -23,5 +23,7 @@ namespace EventPark.BO
         public int nbPlacesLibres { get; set; }
 
         public float tarif { get; set; }
+
+        public float indiceDistance { get; set; }
     }
 }
