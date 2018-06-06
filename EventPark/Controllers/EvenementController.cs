@@ -12,11 +12,10 @@ namespace EventPark.Controllers
 {
     public class EvenementController : Controller
     {
+        private static List<EvenementViewModel> lst = new List<EvenementViewModel>();
         // GET: Evenement
         public ActionResult Index()
         {
-            List<EvenementViewModel> lst = new List<EvenementViewModel>();
-
             lst = EvenementViewModel.GetAll();
             return View(lst);
         }
@@ -73,7 +72,7 @@ namespace EventPark.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch
             {
                 return View();
             }
@@ -104,22 +103,24 @@ namespace EventPark.Controllers
         }
 
         // GET: Evenement/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            EvenementViewModel vm = EvenementViewModel.Get(id);
+
+            return View(vm);
         }
 
         // POST: Evenement/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, EvenementViewModel vm)
+        public ActionResult Delete(Guid id, EvenementViewModel vm)
         {
             try
             {
-                // TODO: Add delete logic here
+                vm.Delete();
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }

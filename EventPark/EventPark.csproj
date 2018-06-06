@@ -329,6 +329,7 @@
     <Content Include="Views\Evenement\Details.cshtml" />
     <Content Include="Views\Evenement\Edit.cshtml" />
     <Content Include="Views\Evenement\Create.cshtml" />
+    <Content Include="Views\Evenement\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

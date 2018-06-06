@@ -67,5 +67,16 @@ namespace EventPark.Services
             }
         }
 
+        public static void Delete(Evenement e)
+        {
+            using (EparkContext context = new EparkContext())
+            {
+                EntityState s = context.Entry(e).State;
+                context.Evenements.Attach(e);
+                context.Evenements.Remove(e);
+
+                context.SaveChanges();
+            }
+        }
     }
 }

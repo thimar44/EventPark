@@ -7,16 +7,16 @@
         for (var i = 0, l = files.length; i < l; i++) {
             var reader = new FileReader();
             
-            reader.onload = (function (i, e) {
+            reader.onload = function (i, e) {
                 var checked = "";
 
-                if (i == 0) {
+                if (i === 0) {
                     checked = "checked='checked'";
                 }
 
                 $("#previewImg").append("<label><input type='radio' name='imgDefault' value='" + i + "' " + checked + "> <img src='" + e.target.result + "' class='imgMiniature' /> </label>");
 
-            }).bind(reader, i);
+            }.bind(reader, i);
 
             reader.readAsDataURL(files[i]);
         }

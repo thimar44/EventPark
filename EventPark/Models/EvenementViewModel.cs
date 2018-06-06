@@ -30,8 +30,8 @@ namespace EventPark.Models
             }
         }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:hh:mm dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh:mm}", ApplyFormatInEditMode = true)]
         [Display(Name ="Date de début")]
         public DateTime DateDebut
         {
@@ -45,8 +45,8 @@ namespace EventPark.Models
             }
         }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:hh:mm dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh:mm}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date de fin")]
         public DateTime DateFin
         {
@@ -133,6 +133,10 @@ namespace EventPark.Models
             ServiceEvenement.Update(this.Metier);
         }
 
+        public void Delete()
+        {
+            ServiceEvenement.Delete(this.Metier);
+        }
 
         public void Save()
         {

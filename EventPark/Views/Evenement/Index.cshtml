@@ -26,7 +26,7 @@
                     {
                         if (img.IsDefault)
                         {
-                            src = img.Url;
+                            src = "../../" + img.Url;
                         }
                     }
                 }
@@ -69,6 +69,7 @@
                     }
 
                     @Html.ActionLink("Détail", "Details", "Evenement", new { id = item.id }, new { @class = "btn btn-primary btn-large" })
+
                 </div>
             </div>
         </div>
