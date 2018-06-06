@@ -11,15 +11,7 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    
-
-}
-
-img.logo {
+.logo {
     max-height: 50px;
 }
 
@@ -150,6 +142,34 @@ html, body {
     padding-left: 0;
 }
 
+.autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+
+.imgMiniature, .imgMiniatureMain {
+    max-width: 20%;
+    margin-right: 20px;
+}
+
+.imgMiniatureMain {
+    border-style: solid;
+    border-color: red;
+    border-width: medium;
+}
+
+#previewImg label {
+    display: inline;
+}
+
+.card-title{
+    min-height: 45px;
+}
+
+#ficheEvenement {
+    margin-bottom: 20px;
+}
 .choiceLi:hover {
     background-color: yellow;
 }

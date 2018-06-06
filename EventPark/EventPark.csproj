@@ -276,6 +276,7 @@
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -329,6 +330,7 @@
     <Content Include="Views\Evenement\Details.cshtml" />
     <Content Include="Views\Evenement\Edit.cshtml" />
     <Content Include="Views\Evenement\Create.cshtml" />
+    <Content Include="Views\Evenement\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,11 +12,10 @@ namespace EventPark.Controllers
 {
     public class EvenementController : Controller
     {
+        private static List<EvenementViewModel> lst = new List<EvenementViewModel>();
         // GET: Evenement
         public ActionResult Index()
         {
-            List<EvenementViewModel> lst = new List<EvenementViewModel>();
-
             lst = EvenementViewModel.GetAll();
             return View(lst);
         }
@@ -41,21 +40,27 @@ namespace EventPark.Controllers
         {
             try
             {
+                vm.id = Guid.NewGuid();
+
                 if (Request.Files.Count > 0)
                 {
                     for (int i = 0; i < Request.Files.Count; i++)
                     {
                         Image img = new Image();
+                        img.id = Guid.NewGuid();
+
                         var fileI = Request.Files[i];
                         if (fileI != null && fileI.ContentLength > 0)
                         {
-                            var fileName = Path.GetFileName(fileI.FileName);
-                            var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                            var fileName = img.id + Path.GetExtension(fileI.FileName);
+                            var path = Path.Combine(Server.MapPath("~/Images/"), vm.id.ToString(), fileName);
                             if (!System.IO.File.Exists(path))
                             {
+                                System.IO.Directory.CreateDirectory(Path.Combine(Server.MapPath("~/Images/"), vm.id.ToString()));
+
                                 fileI.SaveAs(path);
-                                img.id = Guid.NewGuid();
-                                img.Url = fileName;
+                                img.Url = Path.Combine("Images/", vm.id.ToString(), fileName);
+                                img.IsDefault = i.ToString() == Request.Form["imgDefault"];
 
                                 vm.Images.Add(img);
                             }
@@ -87,29 +92,57 @@ namespace EventPark.Controllers
         {
             try
             {
+                if (Request.Files.Count > 0)
+                {
+                    for (int i = 0; i < Request.Files.Count; i++)
+                    {
+                        Image img = new Image();
+                        img.id = Guid.NewGuid();
+
+                        var fileI = Request.Files[i];
+                        if (fileI != null && fileI.ContentLength > 0)
+                        {
+                            var fileName = img.id + Path.GetExtension(fileI.FileName);
+                            var path = Path.Combine(Server.MapPath("~/Images/"), vm.id.ToString(), fileName);
+                            if (!System.IO.File.Exists(path))
+                            {
+                                System.IO.Directory.CreateDirectory(Path.Combine(Server.MapPath("~/Images/"), vm.id.ToString()));
+
+                                fileI.SaveAs(path);
+                                img.Url = Path.Combine("Images/", vm.id.ToString(), fileName);
+                                img.IsDefault = i.ToString() == Request.Form["imgDefault"];
+
+                                vm.Images.Add(img);
+                            }
+                        }
+                    }
+                }
+                
                 vm.Update();
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }
         }
 
         // GET: Evenement/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            EvenementViewModel vm = EvenementViewModel.Get(id);
+
+            return View(vm);
         }
 
         // POST: Evenement/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, EvenementViewModel vm)
+        public ActionResult Delete(Guid id, EvenementViewModel vm)
         {
             try
             {
-                // TODO: Add delete logic here
+                vm.Delete();
 
                 return RedirectToAction("Index");
             }

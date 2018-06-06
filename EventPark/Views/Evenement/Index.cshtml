@@ -19,7 +19,19 @@
                     <h4 class="card-title"> @Html.DisplayFor(modelItem => item.Titre)</h4>
                 </div>
 
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+                @{var src = "https://mdbootstrap.com/img/Photos/Others/images/16.jpg";}
+                @if (item.Images.Count > 0)
+                {
+                    foreach (var img in item.Images)
+                    {
+                        if (img.IsDefault)
+                        {
+                            src = "../../" + img.Url;
+                        }
+                    }
+                }
+                <img class="card-img-top" src=@src alt="Card image cap">
+
 
                 <div class="card-body">
                     @if (item.Tarif > 0)
@@ -34,7 +46,16 @@
                         Du: @Html.DisplayFor(modelItem => item.DateDebut)
                         au: @Html.DisplayFor(modelItem => item.DateFin)
                     </p>
-                    
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Adresse.Libelle)
+                    </p>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Adresse.Rue)
+                    </p>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Adresse.CodePostal)
+                        @Html.DisplayFor(modelItem => item.Adresse.Ville)
+                    </p>           
                 </div>
 
                 <div class="card-footer">
@@ -48,6 +69,7 @@
                     }
 
                     @Html.ActionLink("Détail", "Details", "Evenement", new { id = item.id }, new { @class = "btn btn-primary btn-large" })
+
                 </div>
             </div>
         </div>
