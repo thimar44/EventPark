@@ -136,9 +136,6 @@ namespace EventPark.Models
 
         public void Save()
         {
-
-
-
             if (this.id == Guid.Empty)
             {
                 //insert
@@ -154,7 +151,6 @@ namespace EventPark.Models
         public static List<EvenementViewModel> GetAll()
         {
             List<EvenementViewModel> retour = new List<EvenementViewModel>();
-
 
             List<Evenement> Evenements = ServiceEvenement.GetAll();
             foreach (Evenement e in Evenements)

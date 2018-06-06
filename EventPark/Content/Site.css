@@ -139,3 +139,21 @@ input {
     background-color: DodgerBlue !important;
     color: #ffffff;
 }
+
+.imgMiniature{
+    max-width: 20%;
+    padding-right: 20px;
+}
+
+#previewImg label {
+    display:inline;
+    margin-bottom:8px;
+}
+
+.card-title{
+    min-height: 45px;
+}
+
+#ficheEvenement {
+    margin-bottom: 20px;
+}

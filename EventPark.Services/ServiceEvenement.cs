@@ -16,7 +16,7 @@ namespace EventPark.Services
             List<Evenement> retour = null;
             using (EparkContext context = new EparkContext())
             {
-                retour = context.Evenements.ToList();
+                retour = context.Evenements.Include("Images").Include("Adresse").ToList();
 
             }
             return retour;
@@ -42,7 +42,7 @@ namespace EventPark.Services
         {
             using (EparkContext context = new EparkContext())
             {
-                e.id = Guid.NewGuid();
+                e.Adresse.id = Guid.NewGuid();
                 context.Evenements.Add(e);
                 context.SaveChanges();
             }
