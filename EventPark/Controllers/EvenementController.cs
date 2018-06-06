@@ -52,7 +52,7 @@ namespace EventPark.Controllers
                         var fileI = Request.Files[i];
                         if (fileI != null && fileI.ContentLength > 0)
                         {
-                            var fileName = img.id + Path.GetExtension(fileI.FileName);//Path.GetFileName(fileI.FileName);
+                            var fileName = img.id + Path.GetExtension(fileI.FileName);
                             var path = Path.Combine(Server.MapPath("~/Images/"), vm.id.ToString(), fileName);
                             if (!System.IO.File.Exists(path))
                             {
@@ -92,11 +92,37 @@ namespace EventPark.Controllers
         {
             try
             {
+                if (Request.Files.Count > 0)
+                {
+                    for (int i = 0; i < Request.Files.Count; i++)
+                    {
+                        Image img = new Image();
+                        img.id = Guid.NewGuid();
+
+                        var fileI = Request.Files[i];
+                        if (fileI != null && fileI.ContentLength > 0)
+                        {
+                            var fileName = img.id + Path.GetExtension(fileI.FileName);
+                            var path = Path.Combine(Server.MapPath("~/Images/"), vm.id.ToString(), fileName);
+                            if (!System.IO.File.Exists(path))
+                            {
+                                System.IO.Directory.CreateDirectory(Path.Combine(Server.MapPath("~/Images/"), vm.id.ToString()));
+
+                                fileI.SaveAs(path);
+                                img.Url = Path.Combine("Images/", vm.id.ToString(), fileName);
+                                img.IsDefault = i.ToString() == Request.Form["imgDefault"];
+
+                                vm.Images.Add(img);
+                            }
+                        }
+                    }
+                }
+                
                 vm.Update();
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }
@@ -120,7 +146,7 @@ namespace EventPark.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch
             {
                 return View();
             }

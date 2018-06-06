@@ -11,15 +11,7 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    
-
-}
-
-img.logo {
+.logo {
     max-height: 50px;
 }
 
@@ -140,14 +132,19 @@ input {
     color: #ffffff;
 }
 
-.imgMiniature{
+.imgMiniature, .imgMiniatureMain {
     max-width: 20%;
-    padding-right: 20px;
+    margin-right: 20px;
+}
+
+.imgMiniatureMain {
+    border-style: solid;
+    border-color: red;
+    border-width: medium;
 }
 
 #previewImg label {
-    display:inline;
-    margin-bottom:8px;
+    display: inline;
 }
 
 .card-title{

@@ -3,6 +3,7 @@
 
     if (files) {
         $("#previewImg").append("<label class='control-label col-md-2' for='Images'>Sélectionner l'image principale:</label><br><br>");
+        
 
         for (var i = 0, l = files.length; i < l; i++) {
             var reader = new FileReader();
@@ -20,6 +21,5 @@
 
             reader.readAsDataURL(files[i]);
         }
-
     }
 }
