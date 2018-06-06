@@ -165,7 +165,7 @@ namespace EventPark.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmez votre compte", "Confirmez votre compte en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Evenement");
                 }
                 AddErrors(result);
             }
@@ -394,7 +394,7 @@ namespace EventPark.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Evenement");
         }
 
         //
@@ -451,7 +451,7 @@ namespace EventPark.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Evenement");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
