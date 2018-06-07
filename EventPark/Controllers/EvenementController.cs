@@ -146,7 +146,7 @@ namespace EventPark.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }
