@@ -216,6 +216,17 @@ html, body {
 
 .navbar-brand h2, .navbar-brand p {
     margin-bottom: 0px;
+    font-family: 'Sedgwick Ave Display', cursive;
+}
+
+.navbar-brand h2 {
+    font-size: 4rem;
+    margin-top: 1rem;
+}
+    
+
+.navbar-brand p {
+    font-style: italic;
 }
 
 i.fa-sign-in {
@@ -225,4 +236,29 @@ i.fa-sign-in {
 
 .jumbotron-carousel {
     padding:0;
+}
+
+.card-img-top {
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+    transition: transform .8s ease-in-out;
+}
+
+    .card-img-top:hover {
+        transform: scale(1.1);
+        /*-webkit-transform: rotate(360deg);
+        transform: rotate(360deg);  (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+
+.btn:hover, .btn:focus {
+    transform: scale(1.1);
+}
+
+.nav-item {
+    position: absolute;
+    right: 52px;
+}
+
+.navbar-header {
+    width: 100%;
+    text-align: center;
 }
