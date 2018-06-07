@@ -4,7 +4,11 @@
 @using (Html.BeginForm("Create", "Evenement", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    <div class="backToList">
+        <a class="btn btn-link" href="@Url.Action("Index", "Evenement")">
+            <i class="fa fa-chevron-left "> Retour à la liste</i>
+        </a>
+    </div>
     <div class="jumbotron jumbotron-fluid rounded">
         <div class="form-horizontal">
             <h4>Nouvel événement</h4>
@@ -113,9 +117,6 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

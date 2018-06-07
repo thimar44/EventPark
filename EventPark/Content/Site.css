@@ -182,6 +182,11 @@ html, body {
     margin-bottom: 20px;
 }
 
+.tarif {
+    font-weight: bold;
+    text-align: right;
+}
+
 .choiceLi:hover {
     background-color: yellow;
 }
@@ -208,29 +213,29 @@ html, body {
     text-align: right;
 }
 
-.card-footer a.btn.btn-primary.btn-large {
-    background-color: #AA4B39;
-    border-color: #AA4B39;
-}
+    .card-footer a.btn.btn-primary.btn-large {
+        background-color: #AA4B39;
+        border-color: #AA4B39;
+    }
 
 .navbar-brand {
     color: #022835;
 }
 
-.navbar-brand h2, .navbar-brand p {
-    margin-bottom: 0px;
-    font-family: 'Sedgwick Ave Display', cursive;
-}
+    .navbar-brand h2, .navbar-brand p {
+        margin-bottom: 0px;
+        font-family: 'Sedgwick Ave Display', cursive;
+    }
 
-.navbar-brand h2 {
-    font-size: 4rem;
-    margin-top: 1rem;
-}
+    .navbar-brand h2 {
+        font-size: 4rem;
+        margin-top: 1rem;
+    }
 
 
-.navbar-brand p {
-    font-style: italic;
-}
+    .navbar-brand p {
+        font-style: italic;
+    }
 
 i.fa-sign-in {
     font-size: 2rem;
@@ -246,11 +251,11 @@ i.fa-sign-in {
     transition: transform .8s ease-in-out;
 }
 
-.card-img-top:hover {
-    transform: scale(1.1);
-    /*-webkit-transform: rotate(360deg);
+    .card-img-top:hover {
+        transform: scale(1.1);
+        /*-webkit-transform: rotate(360deg);
     transform: rotate(360deg);  (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
+    }
 
 .btn:hover, .btn:focus {
     transform: scale(1.1);
@@ -265,3 +270,16 @@ i.fa-sign-in {
     width: 100%;
     text-align: center;
 }
+
+.backToList {
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+    .backToList a {
+        color: #AA8839;
+    }
+
+        .backToList a :hover {
+            color: #AA8839;
+        }

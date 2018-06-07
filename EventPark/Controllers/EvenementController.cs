@@ -126,12 +126,12 @@ namespace EventPark.Controllers
                         }
                     }
                 }
-                
+
                 vm.Update();
 
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return View();
             }
@@ -155,7 +155,7 @@ namespace EventPark.Controllers
                 vm.Delete();
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return View();
             }
