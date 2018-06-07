@@ -1,6 +1,6 @@
 ﻿@model EventPark.Models.EvenementViewModel
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Evenement", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

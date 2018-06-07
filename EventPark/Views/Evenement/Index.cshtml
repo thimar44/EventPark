@@ -63,8 +63,13 @@
                     {
                         if (@User.IsInRole("Admin"))
                         {
-                            @Html.ActionLink("Modifier", "Edit", "Evenement", new { id = item.id }, new { @class = "btn btn-warning btn-large" })
-                            @Html.ActionLink("Supprimer", "Delete", "Evenement", new { id = item.id }, new { @class = "btn btn-danger btn-large" })
+                            <a class="btn btn-info" href="@Url.Action("Edit", "Evenement", new { id = item.id })">
+                                <i class="fa fa-edit"></i>
+                            </a>
+
+                            <a class="btn btn-danger" href="@Url.Action("Delete", "Evenement", new { id = item.id })">
+                                <i class="fa fa-trash"></i>
+                            </a>
                         }
                     }
 

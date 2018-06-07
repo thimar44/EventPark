@@ -53,20 +53,9 @@ namespace EventPark.Services
             {
                 EntityState s = context.Entry(e).State;
                 Evenement eExistant = Get(e.id, context);
-                /*eExistant.Theme = e.Theme;
-                eExistant.DateDebut = e.DateDebut;
-                eExistant.DateFin = e.DateFin;
-                //eExistant.Adresse = e.Adresse;
-                e.Adresse = new Adresse(eExistant.Adresse.id, e.Adresse.Libelle, e.Adresse.Rue, e.Adresse.CodePostal, e.Adresse.Ville, e.Adresse.UrlGoogle, e.Adresse.CoordX, e.Adresse.CoordY, e.Adresse.Epsg);
 
-                eExistant.Description = e.Description;
-                eExistant.Tarif = e.Tarif;
                 eExistant.Images = e.Images;
-                eExistant.Titre = e.Titre;*/
-
-
-                context.Entry(eExistant).CurrentValues.SetValues(e);
-                //context.Entry(eExistant.Adresse).CurrentValues.SetValues(e.Adresse);
+                context.Entry(eExistant).CurrentValues.SetValues(e);               
 
                 if (eExistant.Adresse.id == e.Adresse.id)
                 {
@@ -77,8 +66,6 @@ namespace EventPark.Services
                     context.Adresses.Attach(e.Adresse);
                     eExistant.Adresse = e.Adresse;
                 }
-
-                
 
                 context.SaveChanges();
             }
