@@ -77,10 +77,7 @@ namespace EventPark.Services
             {
                 EntityState s = context.Entry(e).State;
                 context.Evenements.Attach(e);
-                
                 context.Evenements.Remove(e);
-                context.Images.RemoveRange(e.Images);
-
                 context.SaveChanges();
             }
         }
