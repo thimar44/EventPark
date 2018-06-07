@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EventPark.BO;
 using EventPark.Models;
 using EventPark.Services;
+using Newtonsoft.Json;
 
 namespace EventPark.Controllers
 {
@@ -41,6 +43,13 @@ namespace EventPark.Controllers
             try
             {
                 vm.id = Guid.NewGuid();
+                /*
+                WebClient webClient = new WebClient();
+                webClient.QueryString.Add("key", "AIzaSyAXEJ9Kcn0hWuIFxXRK6E5QwjMjb9_n9Ew");
+                string addressString = vm.Adresse.Rue + ", " + vm.Adresse.CodePostal + " " + vm.Adresse.Ville + ", France"; 
+                webClient.QueryString.Add("address", addressString);
+                string json = webClient.DownloadString("https://maps.googleapis.com/maps/api/geocode/json");
+                dynamic jsonApi = JsonConvert.DeserializeObject(json);*/
 
                 if (Request.Files.Count > 0)
                 {
