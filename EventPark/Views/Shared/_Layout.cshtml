@@ -16,15 +16,12 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href='@Url.Action("Index", "Evenement")'>
-                    <img class="logo" src='@Url.Content("~/Images/logo.jpg")' />
+                    <h2>CRAZYYYYY EVENT</h2>
+                    <p>Notre métier, vous faire rêver !!!</p>
+                    @*<img class="logo" src='@Url.Content("~/Images/logo.jpg")' />*@
                 </a>
             </div>
             <div class="nav-item">
-                <!--<ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>-->
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

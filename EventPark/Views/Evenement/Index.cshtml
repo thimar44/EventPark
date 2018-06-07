@@ -46,13 +46,13 @@
                         Du: @Html.DisplayFor(modelItem => item.DateDebut)
                         au: @Html.DisplayFor(modelItem => item.DateFin)
                     </p>
-                    <p>
+                    <p class="card-text">
                         @Html.DisplayFor(modelItem => item.Adresse.Libelle)
                     </p>
-                    <p>
+                    <p class="card-text">
                         @Html.DisplayFor(modelItem => item.Adresse.Rue)
                     </p>
-                    <p>
+                    <p class="card-text">
                         @Html.DisplayFor(modelItem => item.Adresse.CodePostal)
                         @Html.DisplayFor(modelItem => item.Adresse.Ville)
                     </p>           
@@ -68,7 +68,7 @@
                         }
                     }
 
-                    @Html.ActionLink("Détail", "Details", "Evenement", new { id = item.id }, new { @class = "btn btn-primary btn-large" })
+                    @Html.ActionLink("Infos", "Details", "Evenement", new { id = item.id }, new { @class = "btn btn-primary btn-large" })
 
                 </div>
             </div>

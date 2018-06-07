@@ -17,6 +17,7 @@
 
 .navbar {
     padding: 0;
+    background-color: #AA8839;
 }
 
 .carousel-item {
@@ -31,14 +32,16 @@
     }
 
 .container {
-    background-color: white;
+    background-color: #26596A;
 }
 
 body {
-    background-image: -webkit-linear-gradient(top, #fff 50%, #ccc 100%);
-    background-image: -o-linear-gradient(top, #fff 50%, #ccc 100%);
-    background-image: linear-gradient(to bottom, #000099 50%, #9933ff 100%);
-    background-repeat: repeat-x;
+    background-color: #26596A; 
+}
+
+
+.navbar .container {
+    background-color: #AA8839;
 }
 
 .event-title {
@@ -47,7 +50,8 @@ body {
 }
 
 .container.body-content {
-    min-height: 800px
+    min-height: 800px;
+    margin-top: 40px;
 }
 
 footer {
@@ -117,11 +121,11 @@ html, body {
     padding: 5px 11px 0px 11px;
 }
 
-    #type-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-    }
+#type-selector label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+}
 
 
 .choiceLi {
@@ -163,8 +167,11 @@ html, body {
     display: inline;
 }
 
-.card-title{
+.card-title {
     min-height: 45px;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 0px;
 }
 
 #ficheEvenement {
@@ -172,4 +179,50 @@ html, body {
 }
 .choiceLi:hover {
     background-color: yellow;
+}
+
+
+.card-deck .card {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.card-img-top {
+    height: 160px;
+}
+
+.card-text {
+    font-size: 0.8rem;
+    margin-bottom: 0px;
+}
+
+.card-footer {
+    padding: 0rem 1.25rem 0.75rem 1.25rem;
+    background-color: transparent;
+    border-top: none;
+    text-align: right;
+}
+
+
+
+.card-footer a.btn.btn-primary.btn-large {
+    background-color: #AA4B39;
+    border-color: #AA4B39;
+}
+
+.navbar-brand {
+    color: #022835;
+}
+
+.navbar-brand h2, .navbar-brand p {
+    margin-bottom: 0px;
+}
+
+i.fa-sign-in {
+    font-size: 2rem;
+    color: #022835;
+}
+
+.jumbotron-carousel {
+    padding:0;
 }

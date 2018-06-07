@@ -13,75 +13,69 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h4 class="event-title event-title-detail"> @Html.DisplayFor(model => model.Titre)</h4>
-            <p>
-                tarif  :  @Html.DisplayFor(model => model.Tarif)€<br />
-                lieu : @Html.DisplayFor(model => model.Adresse.Rue), @Html.DisplayFor(model => model.Adresse.CodePostal) @Html.DisplayFor(model => model.Adresse.Ville)<br />
-                Début : @Html.DisplayFor(model => model.DateDebut) <br />
-                Fin : @Html.DisplayFor(model => model.DateFin)
-            </p>
-        </div>
-
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <div id="MonCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ul class="carousel-indicators">
-
-                    @{
-                        int counter = 0;
-
-                        foreach (var image in Model.Images)
-                        {
-                            <li data-target="#MonCarousel" data-slide-to="@counter"></li>
-                            counter = counter + 1;
-                        }
-                    }
-                   
-
-                    
-                </ul>
-
-                <!-- The slideshow -->
-                <div class="carousel-inner">
-                    @{
-                        int counter2 = 0;
-                        string active = " active";
-                        foreach (var image in Model.Images)
-                        {
-                            <div class="carousel-item @if (counter2 == 0) { @active } ">
-                                    <img class="" src="../../@image.Url">
-                            </div>
-                            counter2 = counter2 + 1;
-                        }
-                     }
-                    </div>
-
-                <a class="carousel-control-prev" href="#MonCarousel" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#MonCarousel" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
-
+            <div class="jumbotron jumbotron-fluid rounded">
+                <h4 class="event-title event-title-detail"> @Html.DisplayFor(model => model.Titre)</h4>
+                <p>
+                    tarif  :  @Html.DisplayFor(model => model.Tarif)€<br />
+                    lieu : @Html.DisplayFor(model => model.Adresse.Rue), @Html.DisplayFor(model => model.Adresse.CodePostal) @Html.DisplayFor(model => model.Adresse.Ville)<br />
+                    Début : @Html.DisplayFor(model => model.DateDebut) <br />
+                    Fin : @Html.DisplayFor(model => model.DateFin)
+                </p>
             </div>
         </div>
-
     </div>
-    <hr />
-
+    @if (Model.Images.Count > 0)
+    {
     <div class="row">
         <div class="col-md-12">
-            <p> @Html.DisplayFor(model => model.Descrition)</p>
+            <div class="jumbotron jumbotron-fluid jumbotron-carousel">
+                <div id="MonCarousel" class="carousel slide" data-ride="carousel">
+                    <ul class="carousel-indicators">
+                        @{
+                            int counter = 0;
+
+                            foreach (var image in Model.Images)
+                            {
+                                <li data-target="#MonCarousel" data-slide-to="@counter"></li>
+                                counter = counter + 1;
+                            }
+                        }
+                    </ul>
+                    <div class="carousel-inner">
+                        @{
+                            int counter2 = 0;
+                            string active = " active";
+                            foreach (var image in Model.Images)
+                            {
+                                <div class="carousel-item @if (counter2 == 0)
+                                { @active } ">
+                                    <img class="" src="../../@image.Url">
+                                </div>
+                                counter2 = counter2 + 1;
+                            }
+                        }
+                    </div>
+                    <a class="carousel-control-prev" href="#MonCarousel" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#MonCarousel" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-    <hr />
+     }
     <div class="row">
         <div class="col-md-12">
-            <div class="jumbotron jumbotron-fluid">
+            <div class="jumbotron jumbotron-fluid rounded">
+                <p> @Html.DisplayFor(model => model.Descrition)</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron jumbotron-fluid rounded">
 
                 <h2>Rechercher un parking à proximité :</h2>
 
@@ -89,11 +83,9 @@
                 <form autocomplete="off">
                     <div class="autocomplete">
                         <input id="addressInput" type="text" name="addressInput" onkeyup="getGeoCode()" placeholder="Entrez votre adresse" style="width:400px;">
-                       
+
                         <div class="choiceDiv">
-                            <ul class="choiceUl">
-                               
-                            </ul>
+                            <ul class="choiceUl"></ul>
                         </div>
                     </div>
                 </form>
@@ -105,7 +97,7 @@
         </div>
         <div class="col-md-12">
             <div id="panel" style="display:  none;"></div>
-            <div id="map"></div>
+            <div id="map" class="rounded"></div>
             <script>
                 var gmarkers = [];
                 var map;
@@ -133,7 +125,7 @@
                                 $(".choiceUl").append('<li id=choice'+ idChoice+' class="choiceLi" lng=' + data.results[result].geometry.location.lng + ' lat=' + data.results[result].geometry.location.lat + ' onClick="clickOnChoice(' + idChoice + ')">' + data.results[result].formatted_address + '</li>');
                                 idChoice = idChoice + 1;
                             };
-                            
+
                         }
                     });
                 };
@@ -152,7 +144,7 @@
                         contentType: 'application/json; charset=utf-8',
                         dataType: 'json',
                         success: function (msg) {
-                            
+
                             $.each(msg, function (key, value) {
                                 console.log(value);
                                 var coordinate = new google.maps.LatLng(value.adresse.CoordY, value.adresse.CoordX);
@@ -183,7 +175,7 @@
                                         }
                                     });
                                 });
-                               
+
                             });
                         }
                     });
@@ -213,7 +205,7 @@
                     directionsDisplay = new google.maps.DirectionsRenderer();
                     directionsDisplay.setMap(map);
                     directionsDisplay.setPanel(document.getElementById('panel'));
-                    
+
                     var request = {
                         origin: coordinateSelected,
                         destination: eventCoordinate,
@@ -230,7 +222,7 @@
 
                 }
 
-                
+
                 function initMap() {
                     eventCoordinate = new google.maps.LatLng("@Html.DisplayFor(model => model.Adresse.CoordX)".replace(',', '.'), "@Html.DisplayFor(model => model.Adresse.CoordY)".replace(',', '.'));
                     map = new google.maps.Map(document.getElementById('map'), {
@@ -240,7 +232,7 @@
                     var eventMarker = new google.maps.Marker({
                         position: eventCoordinate,
                         icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-                       
+
                         map: map
                         //    icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
                     });
