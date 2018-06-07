@@ -35,8 +35,12 @@
     background-color: #26596A;
 }
 
+    .container .nav-item li a {
+        color: #26596A;
+    }
+
 body {
-    background-color: #26596A; 
+    background-color: #26596A;
 }
 
 
@@ -58,8 +62,8 @@ footer {
     text-align: center;
 }
 
-.newEvent{
-    text-align:center;
+.newEvent {
+    text-align: right;
     padding: 20px 0;
 }
 
@@ -121,11 +125,11 @@ html, body {
     padding: 5px 11px 0px 11px;
 }
 
-#type-selector label {
-    font-family: Roboto;
-    font-size: 13px;
-    font-weight: 300;
-}
+    #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+    }
 
 
 .choiceLi {
@@ -177,6 +181,7 @@ html, body {
 #ficheEvenement {
     margin-bottom: 20px;
 }
+
 .choiceLi:hover {
     background-color: yellow;
 }
@@ -203,8 +208,6 @@ html, body {
     text-align: right;
 }
 
-
-
 .card-footer a.btn.btn-primary.btn-large {
     background-color: #AA4B39;
     border-color: #AA4B39;
@@ -223,7 +226,7 @@ html, body {
     font-size: 4rem;
     margin-top: 1rem;
 }
-    
+
 
 .navbar-brand p {
     font-style: italic;
@@ -235,7 +238,7 @@ i.fa-sign-in {
 }
 
 .jumbotron-carousel {
-    padding:0;
+    padding: 0;
 }
 
 .card-img-top {
@@ -243,11 +246,11 @@ i.fa-sign-in {
     transition: transform .8s ease-in-out;
 }
 
-    .card-img-top:hover {
-        transform: scale(1.1);
-        /*-webkit-transform: rotate(360deg);
-        transform: rotate(360deg);  (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-    }
+.card-img-top:hover {
+    transform: scale(1.1);
+    /*-webkit-transform: rotate(360deg);
+    transform: rotate(360deg);  (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
 
 .btn:hover, .btn:focus {
     transform: scale(1.1);

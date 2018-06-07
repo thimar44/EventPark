@@ -9,24 +9,17 @@
         <li>
             @Html.ActionLink("Bonjour " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Se déconnecter</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-3"> Se déconnecter</i></a></li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <!--<li>@Html.ActionLink("S’inscrire", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>-->
         <li>
-            @*<i class="fa fa-sign-in" aria-hidden="true">@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</i>*@
-
-
             <a href="@Url.Action("Login", "Account")">
                 <i class="fa fa-sign-in fa-3"></i>
             </a>
-
-
-
         </li>
     </ul>
 }
