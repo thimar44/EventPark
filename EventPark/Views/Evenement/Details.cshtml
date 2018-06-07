@@ -10,6 +10,11 @@
         width: 100%;
     }
 </style>
+<div class="backToList">
+    <a class="btn btn-link" href="@Url.Action("Index", "Evenement")">
+        <i class="fa fa-chevron-left "> Retour à la liste</i>
+    </a>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -26,46 +31,46 @@
     </div>
     @if (Model.Images.Count > 0)
     {
-    <div class="row">
-        <div class="col-md-12">
-            <div class="jumbotron jumbotron-fluid jumbotron-carousel">
-                <div id="MonCarousel" class="carousel slide" data-ride="carousel">
-                    <ul class="carousel-indicators">
-                        @{
-                            int counter = 0;
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron jumbotron-fluid jumbotron-carousel">
+                    <div id="MonCarousel" class="carousel slide" data-ride="carousel">
+                        <ul class="carousel-indicators">
+                            @{
+                                int counter = 0;
 
-                            foreach (var image in Model.Images)
-                            {
-                                <li data-target="#MonCarousel" data-slide-to="@counter"></li>
-                                counter = counter + 1;
+                                foreach (var image in Model.Images)
+                                {
+                                    <li data-target="#MonCarousel" data-slide-to="@counter"></li>
+                                    counter = counter + 1;
+                                }
                             }
-                        }
-                    </ul>
-                    <div class="carousel-inner">
-                        @{
-                            int counter2 = 0;
-                            string active = " active";
-                            foreach (var image in Model.Images)
-                            {
-                                <div class="carousel-item @if (counter2 == 0)
+                        </ul>
+                        <div class="carousel-inner">
+                            @{
+                                int counter2 = 0;
+                                string active = " active";
+                                foreach (var image in Model.Images)
+                                {
+                                    <div class="carousel-item @if (counter2 == 0)
                                 { @active } ">
-                                    <img class="" src="../../@image.Url">
-                                </div>
-                                counter2 = counter2 + 1;
+                                        <img class="" src="../../@image.Url">
+                                    </div>
+                                    counter2 = counter2 + 1;
+                                }
                             }
-                        }
+                        </div>
+                        <a class="carousel-control-prev" href="#MonCarousel" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#MonCarousel" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
                     </div>
-                    <a class="carousel-control-prev" href="#MonCarousel" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#MonCarousel" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </a>
                 </div>
             </div>
         </div>
-    </div>
-     }
+    }
     <div class="row">
         <div class="col-md-12">
             <div class="jumbotron jumbotron-fluid rounded">

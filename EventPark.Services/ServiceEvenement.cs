@@ -55,7 +55,7 @@ namespace EventPark.Services
                 Evenement eExistant = Get(e.id, context);
 
                 eExistant.Images = e.Images;
-                context.Entry(eExistant).CurrentValues.SetValues(e);               
+                context.Entry(eExistant).CurrentValues.SetValues(e);
 
                 if (eExistant.Adresse.id == e.Adresse.id)
                 {
