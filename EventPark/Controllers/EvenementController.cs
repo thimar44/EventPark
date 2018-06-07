@@ -142,8 +142,8 @@ namespace EventPark.Controllers
         {
             try
             {
+                vm = EvenementViewModel.Get(id);
                 vm.Delete();
-
                 return RedirectToAction("Index");
             }
             catch(Exception e)
