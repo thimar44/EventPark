@@ -147,7 +147,8 @@
 
                             $.each(msg, function (key, value) {
                                 console.log(value);
-                                var coordinate = new google.maps.LatLng(value.adresse.CoordY, value.adresse.CoordX);
+                                console.log(value.Lng);
+                                var coordinate = new google.maps.LatLng(value.lng, value.lat);
                                 var parkingMarker = new google.maps.Marker({
                                     position: coordinate,
                                     icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',

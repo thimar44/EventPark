@@ -67,11 +67,12 @@ namespace EventPark.Controllers
                 foreach (var park in parks)
                 {
                     Parking newPark = new Parking();
-                    CoordonneesGPS newParkCoords = listCoords[newPark.idAPI];
-
+                    
                     var parkInformations = park.parkInformation;
                     newPark.nom = parkInformations.name;
                     newPark.idAPI = park.id;
+
+                    CoordonneesGPS newParkCoords = listCoords[newPark.idAPI];
                     newPark.nbPlacesLibres = parkInformations.free;
 
                     newPark.lat = newParkCoords.lat;
