@@ -200,7 +200,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AdresseViewModel.cs" />
     <Compile Include="Models\EvenementViewModel.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

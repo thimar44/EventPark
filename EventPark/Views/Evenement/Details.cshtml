@@ -22,7 +22,7 @@
                 <h4 class="event-title event-title-detail"> @Html.DisplayFor(model => model.Titre)</h4>
                 <p>
                     tarif  :  @Html.DisplayFor(model => model.Tarif)€<br />
-                    lieu : @Html.DisplayFor(model => model.Adresse.Rue), @Html.DisplayFor(model => model.Adresse.CodePostal) @Html.DisplayFor(model => model.Adresse.Ville)<br />
+                    lieu : @Html.DisplayFor(model => model.Adresse) <br />
                     Début : @Html.DisplayFor(model => model.DateDebut) <br />
                     Fin : @Html.DisplayFor(model => model.DateFin)
                 </p>
@@ -84,19 +84,15 @@
 
                 <h2>Rechercher un parking à proximité :</h2>
 
-
                 <form autocomplete="off">
                     <div class="autocomplete">
-                        <input id="addressInput" type="text" name="addressInput" onkeyup="getGeoCode()" placeholder="Entrez votre adresse" style="width:400px;">
+                        <input id="addressInput" type="text" name="addressInput" onkeyup="getGeoCode()" placeholder="Entrez votre adresse" class="form-control">
 
                         <div class="choiceDiv">
                             <ul class="choiceUl"></ul>
                         </div>
                     </div>
                 </form>
-
-
-
 
             </div>
         </div>
@@ -135,7 +131,6 @@
                     });
                 };
 
-
                 function loadParks() {
                     $.ajax({
                         type: 'POST',
@@ -143,8 +138,8 @@
                         data: JSON.stringify({
                             latUser: latSelected,
                             lngUser: lngSelected,
-                            latEvent: "@Html.DisplayFor(model => model.Adresse.CoordX)",
-                            lngEvent: "@Html.DisplayFor(model => model.Adresse.CoordY)"
+                            latEvent: "@Html.DisplayFor(model => model.lat)",
+                            lngEvent: "@Html.DisplayFor(model => model.lng)"
                         }),
                         contentType: 'application/json; charset=utf-8',
                         dataType: 'json',
@@ -227,9 +222,8 @@
 
                 }
 
-
                 function initMap() {
-                    eventCoordinate = new google.maps.LatLng("@Html.DisplayFor(model => model.Adresse.CoordX)".replace(',', '.'), "@Html.DisplayFor(model => model.Adresse.CoordY)".replace(',', '.'));
+                    eventCoordinate = new google.maps.LatLng("@Html.DisplayFor(model => model.lat)".replace(',', '.'), "@Html.DisplayFor(model => model.lng)".replace(',', '.'));
                     map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 12,
                         center: eventCoordinate
@@ -249,6 +243,4 @@
             </script>
         </div>
     </div>
-
-
 </div>

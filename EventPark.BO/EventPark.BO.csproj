@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adresse.cs" />
+    <Compile Include="CoordonneesGPS.cs" />
     <Compile Include="Evenement.cs" />
     <Compile Include="IEntityIdentifiable.cs" />
     <Compile Include="Image.cs" />

@@ -28,7 +28,6 @@
         // Ajoutez un DbSet pour chaque type d'entité à inclure dans votre modèle. Pour plus d'informations 
         // sur la configuration et l'utilisation du modèle Code First, consultez http://go.microsoft.com/fwlink/?LinkId=390109.
         public virtual DbSet<Evenement> Evenements { get; set; }
-        public virtual DbSet<Adresse> Adresses { get; set; }
 
         public virtual DbSet<Image> Images { get; set; }
     }

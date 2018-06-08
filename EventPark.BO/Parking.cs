@@ -12,7 +12,9 @@ namespace EventPark.BO
 
         public String nom { get; set; }
 
-        public Adresse adresse { get; set; }
+        public double lat { get; set; }
+
+        public double lng { get; set; }
 
         public String horairesOuverture { get; set; }
 

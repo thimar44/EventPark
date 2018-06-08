@@ -48,36 +48,105 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Adresse.Libelle, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse.Libelle, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Adresse.Libelle, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Adresse, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 autocomplete">
+                    <input id="addressInput" type="text" name="addressInput" onkeyup="getGeoCode()" class="form-control">
+                    <div class="choiceDiv">
+                        <ul class="choiceUl"></ul>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Adresse.Rue, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse.Rue, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Adresse.Rue, "", new { @class = "text-danger" })
+                    <input id="lat" type="hidden" name="lat" class="form-control">
+                    <input id="lng" type="hidden" name="lng" class="form-control">
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Adresse.CodePostal, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse.CodePostal, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Adresse.CodePostal, "", new { @class = "text-danger" })
-                </div>
+            <div class="col-md-12">
+                <script>
+                    var gmarkers = [];
+                    var map;
+                    var eventCoordinate;
+                    var userCoordinate;
+                    var coordinateSelected;
+                    var latSelected;
+                    var lngSelected;
+                    var directionsService;
+                    var directionsDisplay;
+
+
+                    function getGeoCode() {
+                        var userInput = $("input#addressInput").val();
+                        $.getJSON({
+                            url: 'https://maps.googleapis.com/maps/api/geocode/json',
+                            data: {
+                                key: "AIzaSyAXEJ9Kcn0hWuIFxXRK6E5QwjMjb9_n9Ew",
+                                address: userInput
+                            },
+                            success: function (data, textStatus) {
+                                $(".choiceUl").empty();
+                                var idChoice = 0;
+                                for (result in data.results) {
+                                    $(".choiceUl").append('<li id=choice' + idChoice
+                                        + ' class="choiceLi" lat=' + data.results[result].geometry.location.lat
+                                        + ' lng=' + data.results[result].geometry.location.lng
+                                        + ' onClick="clickOnChoice(' + idChoice + ')">'
+                                        + data.results[result].formatted_address + '</li>');
+                                    idChoice = idChoice + 1;
+                                };
+                            }
+                        });
+                    };
+
+                    function clickOnChoice(idChoice) {
+                        var elementSelected = $("#choice" + idChoice);
+                        $("#addressInput").val(elementSelected.text());
+                        latSelected = elementSelected.attr("lat");
+                        lngSelected = elementSelected.attr("lng");
+
+                        coordinateSelected = new google.maps.LatLng(latSelected, lngSelected);
+                        $(".choiceUl").empty();
+
+                        var userMarker = new google.maps.Marker({
+                            position: coordinateSelected,
+                            map: map
+                        });
+
+                        gmarkers.push(userMarker);
+
+                        for (i = 0; i < gmarkers.length; i++) {
+                            gmarkers[i].setMap(null);
+                        }
+
+                        directionsService = new google.maps.DirectionsService();
+                        directionsDisplay = new google.maps.DirectionsRenderer();
+                        directionsDisplay.setMap(map);
+                        directionsDisplay.setPanel(document.getElementById('panel'));
+
+                        var request = {
+                            origin: coordinateSelected,
+                            destination: eventCoordinate,
+                            travelMode: google.maps.DirectionsTravelMode.DRIVING
+                        };
+
+                        directionsService.route(request, function (response, status) {
+                            if (status == google.maps.DirectionsStatus.OK) {
+                                directionsDisplay.setDirections(response);
+                            }
+                        });
+
+                        $("#lat").val(latSelected);
+                        $("#lng").val(lngSelected);                        
+                    }
+
+                </script>
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXEJ9Kcn0hWuIFxXRK6E5QwjMjb9_n9Ew&callback=initMap">
+                </script>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Adresse.Ville, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse.Ville, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Adresse.Ville, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })

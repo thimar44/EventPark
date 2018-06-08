@@ -35,11 +35,11 @@ namespace EventPark.Controllers
                 dynamic jsonApi = JsonConvert.DeserializeObject(json);
                 var adressess = jsonApi.features;
                 var adresses = adressess.features;
-                Dictionary<string, Adresse> listAdresse = new Dictionary<string, Adresse>();
+                Dictionary<string, CoordonneesGPS> listCoords = new Dictionary<string, CoordonneesGPS>();
                 foreach (var feature in adresses)
                 {
                     string id = feature.id;
-                    Adresse newAdresse = new Adresse();
+                    CoordonneesGPS newAdresse = new CoordonneesGPS();
                     var geometry = feature.geometry;
                     Newtonsoft.Json.Linq.JArray coordinate = geometry.coordinates;
                     int indice = 0;
@@ -50,16 +50,16 @@ namespace EventPark.Controllers
                         {
                             string sdf = (string)item;
 
-                            newAdresse.CoordX = float.Parse(sdf.Replace(".", ","));
+                            newAdresse.lat = double.Parse(sdf.Replace(".", ","));
                         } 
                         if (indice == 1)
                         {
                             string sdf = (string)item;
-                            newAdresse.CoordY = float.Parse(sdf.Replace(".", ","));
+                            newAdresse.lng = double.Parse(sdf.Replace(".", ","));
                         }
                         indice++;
                     }
-                        listAdresse.Add(id, newAdresse);
+                    listCoords.Add(id, newAdresse);
                 }
 
                 var parks = jsonApi.parks;
@@ -67,14 +67,16 @@ namespace EventPark.Controllers
                 foreach (var park in parks)
                 {
                     Parking newPark = new Parking();
-                    Adresse newParkAdresse = new Adresse();
+                    CoordonneesGPS newParkCoords = listCoords[newPark.idAPI];
 
                     var parkInformations = park.parkInformation;
                     newPark.nom = parkInformations.name;
                     newPark.idAPI = park.id;
                     newPark.nbPlacesLibres = parkInformations.free;
-                    newPark.adresse = listAdresse[newPark.idAPI];
-                    newPark.indiceDistance = calculIndiceDistance(float.Parse(latEvent.Replace(".", ",")), float.Parse(lngEvent.Replace(".", ",")), float.Parse(latUser.Replace(".", ",")), float.Parse(lngUser.Replace(".", ",")), newPark.adresse.CoordX, newPark.adresse.CoordY);
+
+                    newPark.lat = newParkCoords.lat;
+                    newPark.lng = newParkCoords.lng;
+                    newPark.indiceDistance = calculIndiceDistance(float.Parse(latEvent.Replace(".", ",")), float.Parse(lngEvent.Replace(".", ",")), float.Parse(latUser.Replace(".", ",")), float.Parse(lngUser.Replace(".", ",")), newPark.lat, newPark.lng);
                     
                     if (newPark.nbPlacesLibres > 10)
                     {
@@ -92,12 +94,10 @@ namespace EventPark.Controllers
         }
 
 
-        public float calculIndiceDistance(float latEvent, float lngEvent, float latUser, float lngUser, float latPark, float lngPark)
+        public float calculIndiceDistance(float latEvent, float lngEvent, float latUser, float lngUser, double latPark, double lngPark)
         {
             double distanceUserPark = DistanceTo(latUser, lngUser, latPark, lngPark);
             double distanceParkEvent = DistanceTo(latPark, lngPark, latEvent, lngEvent);
-
-
             return (float)(distanceUserPark + distanceParkEvent);
         }
 

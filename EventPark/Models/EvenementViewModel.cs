@@ -60,7 +60,19 @@ namespace EventPark.Models
             }
         }
 
-        public Adresse Adresse
+        public String LibelleAdresse
+        {
+            get
+            {
+                return this.Metier.LibelleAdresse;
+            }
+            set
+            {
+                this.Metier.LibelleAdresse = value;
+            }
+        }
+
+        public String Adresse
         {
             get
             {
@@ -69,6 +81,30 @@ namespace EventPark.Models
             set
             {
                 this.Metier.Adresse = value;
+            }
+        }
+
+        public double lat
+        {
+            get
+            {
+                return this.Metier.lat;
+            }
+            set
+            {
+                this.Metier.lat = value;
+            }
+        }
+
+        public double lng
+        {
+            get
+            {
+                return this.Metier.lng;
+            }
+            set
+            {
+                this.Metier.lng = value;
             }
         }
 
@@ -164,8 +200,6 @@ namespace EventPark.Models
 
             return retour;
         }
-
-
 
         /// <summary>
         /// retourne un Evenement ViewModel

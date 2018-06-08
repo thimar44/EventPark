@@ -16,7 +16,7 @@ namespace EventPark.Services
             List<Evenement> retour = null;
             using (EparkContext context = new EparkContext())
             {
-                retour = context.Evenements.Include("Images").Include("Adresse").ToList();
+                retour = context.Evenements.Include("Images").ToList();
             }
             return retour;
         }
@@ -34,14 +34,13 @@ namespace EventPark.Services
 
         private static Evenement Get(Guid id, EparkContext context)
         {
-            return context.Evenements.Include("Images").Include("Adresse").FirstOrDefault(e => e.id == id);
+            return context.Evenements.Include("Images").FirstOrDefault(e => e.id == id);
         }
 
         public static void Insert(Evenement e)
         {
             using (EparkContext context = new EparkContext())
             {
-                e.Adresse.id = Guid.NewGuid();
                 context.Evenements.Add(e);
                 context.SaveChanges();
             }
@@ -56,16 +55,6 @@ namespace EventPark.Services
 
                 eExistant.Images = e.Images;
                 context.Entry(eExistant).CurrentValues.SetValues(e);
-
-                if (eExistant.Adresse.id == e.Adresse.id)
-                {
-                    context.Entry(eExistant.Adresse).CurrentValues.SetValues(e.Adresse);
-                }
-                else
-                {
-                    context.Adresses.Attach(e.Adresse);
-                    eExistant.Adresse = e.Adresse;
-                }
 
                 context.SaveChanges();
             }

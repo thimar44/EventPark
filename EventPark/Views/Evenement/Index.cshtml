@@ -51,13 +51,10 @@
                         fin: @Html.DisplayFor(modelItem => item.DateFin)
                     </p>
                     <p class="card-text">
-                        @Html.DisplayFor(modelItem => item.Adresse.Libelle)
+                        @Html.DisplayFor(modelItem => item.LibelleAdresse)
                     </p>
                     <p class="card-text">
-                        @Html.DisplayFor(modelItem => item.Adresse.Rue)
-                    </p>
-                    <p class="card-text">
-                        @Html.DisplayFor(modelItem => item.Adresse.CodePostal), @Html.DisplayFor(modelItem => item.Adresse.Ville)
+                        @Html.DisplayFor(modelItem => item.Adresse)
                     </p>
                 </div>
 

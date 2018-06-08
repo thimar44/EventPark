@@ -97,6 +97,10 @@
     <Compile Include="Migrations\201806041225474_supprDuree.Designer.cs">
       <DependentUpon>201806041225474_supprDuree.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806080740475_tout_casse_les_adresses.cs" />
+    <Compile Include="Migrations\201806080740475_tout_casse_les_adresses.Designer.cs">
+      <DependentUpon>201806080740475_tout_casse_les_adresses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -152,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806041225474_supprDuree.resx">
       <DependentUpon>201806041225474_supprDuree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806080740475_tout_casse_les_adresses.resx">
+      <DependentUpon>201806080740475_tout_casse_les_adresses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
