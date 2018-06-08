@@ -15,17 +15,17 @@ namespace EventPark.BO
         public Evenement(Guid id, string theme, DateTime dateDebut, DateTime dateFin, string titre, string libelleAdresse, string adresse, double lat, double lng, string description, float tarif, List<Image> images)
         {
             this.id = id;
-            Theme = theme;
-            DateDebut = dateDebut;
-            DateFin = dateFin;
-            Titre = titre;
-            LibelleAdresse = libelleAdresse;
-            Adresse = adresse;
+            this.Theme = theme;
+            this.DateDebut = dateDebut;
+            this.DateFin = dateFin;
+            this.Titre = titre;
+            this.LibelleAdresse = libelleAdresse;
+            this.Adresse = adresse;
             this.lat = lat;
             this.lng = lng;
-            Description = description;
-            Tarif = tarif;
-            Images = images;
+            this.Description = description;
+            this.Tarif = tarif;
+            this.Images = images;
         }
 
         public Guid id { get; set; }
