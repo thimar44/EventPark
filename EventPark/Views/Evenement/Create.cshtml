@@ -58,7 +58,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Adresse, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10 autocomplete">
-                    <input id="addresse" type="text" name="addresse" onkeyup="getGeoCode()" class="form-control">
+                    <input id="Adresse" type="text" name="Adresse" onkeyup="getGeoCode()" class="form-control">
                     <div class="choiceDiv">
                         <ul class="choiceUl"></ul>
                     </div>
@@ -69,8 +69,6 @@
                 <div class="col-md-10">
                     @Html.HiddenFor(x => x.lat)
                     @Html.HiddenFor(x => x.lng)
-                    @*<input id="lat" type="hidden" name="lat" class="form-control">
-        <input id="lng" type="hidden" name="lng" class="form-control">*@
                 </div>
             </div>
 
@@ -81,7 +79,7 @@
                     var lngSelected;
 
                     function getGeoCode() {
-                        var userInput = $("input#addresse").val();
+                        var userInput = $("input#Adresse").val();
                         $.getJSON({
                             url: 'https://maps.googleapis.com/maps/api/geocode/json',
                             data: {
@@ -105,13 +103,13 @@
 
                     function clickOnChoice(idChoice) {
                         var elementSelected = $("#choice" + idChoice);
-                        $("#addressInput").val(elementSelected.text());
+                        $("#Adresse").val(elementSelected.text());
                         latSelected = elementSelected.attr("lat");
                         lngSelected = elementSelected.attr("lng");
                         coordinateSelected = new google.maps.LatLng(latSelected, lngSelected);
                         $(".choiceUl").empty();
-                        $("#lat").val(latSelected);
-                        $("#lng").val(lngSelected);
+                        $("#lat").val(latSelected.replace('.',','));
+                        $("#lng").val(lngSelected.replace('.', ','));
                     }
 
                 </script>

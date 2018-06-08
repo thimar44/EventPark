@@ -1,6 +1,6 @@
 ﻿@model EventPark.Models.EvenementViewModel
 
-@using (Html.BeginForm("Create", "Evenement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Evenement", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="backToList">
@@ -58,10 +58,65 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Adresse, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Adresse, "", new { @class = "text-danger" })
+                <div class="col-md-10 autocomplete">
+                    <input id="Adresse" type="text" name="Adresse" onkeyup="getGeoCode()" class="form-control">
+                    <div class="choiceDiv">
+                        <ul class="choiceUl"></ul>
+                    </div>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.HiddenFor(x => x.lat)
+                    @Html.HiddenFor(x => x.lng)
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <script>
+                    var coordinateSelected;
+                    var latSelected;
+                    var lngSelected;
+
+                    function getGeoCode() {
+                        var userInput = $("input#Adresse").val();
+                        $.getJSON({
+                            url: 'https://maps.googleapis.com/maps/api/geocode/json',
+                            data: {
+                                key: "AIzaSyAXEJ9Kcn0hWuIFxXRK6E5QwjMjb9_n9Ew",
+                                address: userInput
+                            },
+                            success: function (data, textStatus) {
+                                $(".choiceUl").empty();
+                                var idChoice = 0;
+                                for (result in data.results) {
+                                    $(".choiceUl").append('<li id=choice' + idChoice
+                                        + ' class="choiceLi" lat=' + data.results[result].geometry.location.lat
+                                        + ' lng=' + data.results[result].geometry.location.lng
+                                        + ' onClick="clickOnChoice(' + idChoice + ')">'
+                                        + data.results[result].formatted_address + '</li>');
+                                    idChoice = idChoice + 1;
+                                };
+                            }
+                        });
+                    };
+
+                    function clickOnChoice(idChoice) {
+                        var elementSelected = $("#choice" + idChoice);
+                        $("#Adresse").val(elementSelected.text());
+                        latSelected = elementSelected.attr("lat");
+                        lngSelected = elementSelected.attr("lng");
+                        coordinateSelected = new google.maps.LatLng(latSelected, lngSelected);
+                        $(".choiceUl").empty();
+                        $("#lat").val(latSelected.replace('.',','));
+                        $("#lng").val(lngSelected.replace('.', ','));
+                    }
+
+                </script>
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXEJ9Kcn0hWuIFxXRK6E5QwjMjb9_n9Ew">
+                </script>
             </div>
 
             <div>
@@ -104,7 +159,6 @@
                     @Html.ValidationMessageFor(model => model.Descrition, "", new { @class = "text-danger" })
                 </div>
             </div>
-
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Tarif, htmlAttributes: new { @class = "control-label col-md-2" })
